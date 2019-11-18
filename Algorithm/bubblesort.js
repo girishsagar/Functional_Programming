@@ -1,4 +1,9 @@
-const access=require('../Utility/utility')
-//var input=require('readline-sync')
-//var array=input.question("Enter the bubble sort ")
+/**
+ * @file: bubblesort.js.
+ * @module: Algorithm
+ * @author: Girish Sagar
+ * @version:6.11.3
+ * @since:16-Nov-2019
+ */
+const access = require("../Utility/utility");
 access.bubblesort();

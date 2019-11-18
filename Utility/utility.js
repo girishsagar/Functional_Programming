@@ -1,25 +1,9 @@
 var input = require("readline-sync");
-// exports.isReadArray=()=>
-// {
-//    var SizeOfArray=input.question("Enter the size of an array ")
-//   var array=[]
-//   for(let i=0;i<SizeOfArray;i++)
-//   {
-//     array[i]=input.questionInt("Enter the elements")
-//   }
-//   // var len = array.length;
-//   // for(var i=0;i<len;i++)
-//   // {
-//   //   console.log(array[i] + " ")
-//   // }
-// }
-
 /**
  * Execution default cmd>node.js
  * @purpose :Read in a list of words from File.
  * Then prompt the user to enter a word to search the list.
  */
-
 exports.binarySearch = (arr, search) => {
   let left = 0;
   let right = arr.length - 1;
@@ -114,12 +98,10 @@ exports.mergeSort = () => {
  * @purpose :Take a range of 0 - 1000 Numbers and find the Prime numbers in that range.
  */
 
-exports.prime = (number1, number2) => {
+exports.prime = () => {
   let temp = 0;
-  number1 = input.question("Enter the Starting Range ");
-  number2 = input.question("Enter the Second Number");
-  for (let i = 1; i <= number2; i++) {
-    for (let j = 2; j <= number1 - 1; j++) {
+  for (let i = 1; i <= 1000; i++) {
+    for (let j = 2; j <= i - 1; j++) {
       if (i % j == 0) {
         temp = temp + 1;
       }
@@ -129,5 +111,27 @@ exports.prime = (number1, number2) => {
     } else {
       temp = 0;
     }
+  }
+};
+/**
+ * Execution default cmd>node.js
+ * @purpose :To check given String Anagram or not
+ */
+exports.anagram = (str1, str2) => {
+  str1 = input.question("Enter the String 1");
+  str2 = input.question("Enter the second ");
+  str1 = str1.toLowerCase();
+  str2 = str2.toLowerCase();
+  str1 = str1.trim(" ", "");
+  str2 = str2.trim(" ", "");
+  let word = str1.split(" ");
+  let word1 = str2.split(" ");
+  let x = str1.sort(word);
+  //  Array.sort(word1)
+
+  if (word == word1) {
+    console.log("its yres");
+  } else {
+    console.log("its yes ");
   }
 };

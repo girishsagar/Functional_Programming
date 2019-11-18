@@ -7,7 +7,7 @@
  */
 
 const access = require("../Utility/utility");
-var input = require("readline-sync");
+const input = require("readline-sync");
 let array = input.question("Enter the array ");
 let search = input.question("Enter the search value ");
 var result = access.binarySearch(array, search);
