@@ -5,12 +5,8 @@
  */
 
 exports.array2d = (row, col) => {
-  var input=require('readline-sync')
-  col=input.question("Enter th col")
-  row=input.question("Enter the row")
   try {
     let input = require("readline-sync");
-
     var array = [];
     for (let i = 0; i < row; i++) {
       array.push([]);

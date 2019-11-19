@@ -8,7 +8,7 @@
  * @since:15-Nov-2019
  */
 const access = require("../Stopwatch/stopwatchBl");
-var input = require("readline-sync");
+const input = require("readline-sync");
 var starttime = input.question("Enter one to start");
 var stoptime = input.question("Enter two to stop time ");
 access.stopwatch(starttime, stoptime);

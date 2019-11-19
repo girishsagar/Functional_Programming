@@ -6,7 +6,7 @@
  * @since:15-Nov-2019
  */
 
-const access = require("../Utility/utility");
+const access = require("../Utility/Algorithmutility");
 const input = require("readline-sync");
 let array = input.question("Enter the array ");
 let search = input.question("Enter the search value ");

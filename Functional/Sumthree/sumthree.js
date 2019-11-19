@@ -1,7 +1,6 @@
 /**
  * @Filename :triple.js
  * @module: Function Algorithm
- * @input :I/P -> N number of integer, and N integer input array.
  * @logic : Find distinct triples (i, j, k) such that a[i] + a[j] + a[k] = 0
  * @author: Girish Sagar
  * @version:6.11.3

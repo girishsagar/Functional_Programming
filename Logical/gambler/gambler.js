@@ -8,7 +8,7 @@
  * @since:14-Nov-2019
  */
 const get = require('../gambler/gamblerBl');
-let input = require("readline-sync");
+const input = require("readline-sync");
 let stake = input.question("Enter the stake ");
 let goal = input.question("Enter the goal ");
 let trial = input.question("Number of Traials ");

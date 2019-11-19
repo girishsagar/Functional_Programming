@@ -5,10 +5,9 @@
  * x and y and prints the Euclidean distance from the point (x, y) to the origin (0, 0). 
 
  */
-exports.distance = (x, y) => {
+exports.distance = (xaxis, yaxis) => {
   try {
-    //
-    let distance = Math.sqrt(x * x + y * y);
+    let distance = Math.sqrt(xaxis * xaxis + yaxis * yaxis);
     console.log(distance);
   } catch (error) {
     console.log("give proper number");

@@ -6,6 +6,7 @@
  * @since:13-Nov-2019
  */
 const access = require("../array2d/array2dbl");
-access.array2d();
-
-  
+const input = require("readline-sync");
+col = input.question("Enter th col");
+row = input.question("Enter the row");
+access.array2d(row, col);

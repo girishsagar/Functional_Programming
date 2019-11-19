@@ -7,5 +7,7 @@
  * @since:14-Nov-2019
  */
 const access = require("../Coupon/couponBl");
-var random = access.coupon();
+const input = require("readline-sync");
+let number = input.question("Enter the number to Find a random Numbers  ");
+var random = access.coupon(number);
 console.log(random);

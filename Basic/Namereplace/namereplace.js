@@ -6,4 +6,6 @@
  * @since:13-Nov-2019
  */
 const access = require("../Namereplace/namereplacebl");
-access.nameReplace();
+const input = require("readline-sync");
+str = input.question("Enter the string  ");
+access.nameReplace(str);

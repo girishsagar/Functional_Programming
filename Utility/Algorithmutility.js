@@ -1,9 +1,10 @@
-var input = require("readline-sync");
+
 /**
  * Execution default cmd>node.js
  * @purpose :Read in a list of words from File.
  * Then prompt the user to enter a word to search the list.
  */
+var input = require("readline-sync");
 exports.binarySearch = (arr, search) => {
   let left = 0;
   let right = arr.length - 1;
@@ -118,20 +119,15 @@ exports.prime = () => {
  * @purpose :To check given String Anagram or not
  */
 exports.anagram = (str1, str2) => {
-  str1 = input.question("Enter the String 1");
-  str2 = input.question("Enter the second ");
-  str1 = str1.toLowerCase();
-  str2 = str2.toLowerCase();
-  str1 = str1.trim(" ", "");
-  str2 = str2.trim(" ", "");
-  let word = str1.split(" ");
-  let word1 = str2.split(" ");
-  let x = str1.sort(word);
+  str1=input.question("Enter the String 1 ")
+  str2=input.question(" Enter the String2 ")
+  let sorted1=str1.split('').sort().join('').toLowerCase();
+  let sorted2=str2.split('').sort().join('').toLowerCase();
   //  Array.sort(word1)
 
-  if (word == word1) {
-    console.log("its yres");
+  if (sorted1 == sorted2) {
+    console.log("its a Anagaram");
   } else {
-    console.log("its yes ");
+    console.log("its not an Anagram  ");
   }
 };

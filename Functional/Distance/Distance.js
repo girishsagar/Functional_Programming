@@ -8,7 +8,7 @@
  */
 
 const access = require("../Distance/Distancebl");
-let input = require("readline-sync");
-let x = input.questionFloat("Enter the distance of x ");
-let y = input.questionFloat("enter the diatance of y ");
-access.distance(x, y);
+const input = require("readline-sync");
+let xaxis = input.questionFloat("Enter the distance of origin x-axis ");
+let yaxis = input.questionFloat("enter the diatance of origin y-axis ");
+access.distance(xaxis, yaxis);
