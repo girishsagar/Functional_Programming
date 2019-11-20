@@ -7,5 +7,6 @@
  */
 const access = require("../Powerof2/powerbl");
 const input = require("readline-sync");
-let nummber = input.question("Enter to fin to the power numbrer");
-access.powerof(number);
+let number = input.question("Enter to fin to the power numbrer");
+var power=access.powerof(number);
+

@@ -1,10 +1,9 @@
-
 /**
  * Execution default cmd>node.js
  * @purpose :Read in a list of words from File.
  * Then prompt the user to enter a word to search the list.
  */
-var input = require("readline-sync");
+const input = require("readline-sync");
 exports.binarySearch = (arr, search) => {
   let left = 0;
   let right = arr.length - 1;
@@ -28,8 +27,8 @@ exports.binarySearch = (arr, search) => {
  */
 (exports.insertionsort = array => {
   let temp;
-  array = ["yogesh", "karun", "jaggu", "sagar", "arun"];
-  //array = [75, 8, 312, 12, 1];
+  //array = ["yogesh", "karun", "jaggu", "sagar", "arun"];
+  array = [75, 8, 312, 12, 1];
   let j = 0;
   for (let i = 1; i < array.length; i++) {
     temp = array[i];
@@ -119,10 +118,18 @@ exports.prime = () => {
  * @purpose :To check given String Anagram or not
  */
 exports.anagram = (str1, str2) => {
-  str1=input.question("Enter the String 1 ")
-  str2=input.question(" Enter the String2 ")
-  let sorted1=str1.split('').sort().join('').toLowerCase();
-  let sorted2=str2.split('').sort().join('').toLowerCase();
+  str1 = input.question("Enter the String 1 ");
+  str2 = input.question(" Enter the String2 ");
+  let sorted1 = str1
+    .split("")
+    .sort()
+    .join("")
+    .toLowerCase();
+  let sorted2 = str2
+    .split("")
+    .sort()
+    .join("")
+    .toLowerCase();
   //  Array.sort(word1)
 
   if (sorted1 == sorted2) {
@@ -130,4 +137,94 @@ exports.anagram = (str1, str2) => {
   } else {
     console.log("its not an Anagram  ");
   }
+};
+/**
+ * Execution default cmd>node.js
+ * @purpose : String using iterative method and Recursion method Permutation.
+ */
+
+exports.permutation = permutation => {
+  var length = permutation.length,
+    result = [permutation.slice()],
+    c = new Array(length).fill(0),
+    i = 1,
+    k,
+    p;
+
+  while (i < length) {
+    if (c[i] < i) {
+      k = i % 2 && c[i];
+      p = permutation[i];
+      permutation[i] = permutation[k];
+      permutation[k] = p;
+      ++c[i];
+      i = 1;
+      result.push(permutation.slice());
+    } else {
+      c[i] = 0;
+      ++i;
+    }
+  }
+  return result;
+};
+
+/**
+ * Execution default cmd>node.js
+ * @purpose :to Check given string anagram palidrome or not
+ */
+exports.anagramPalindrome = str1 => {
+  const charCheck = {};
+  let currStr;
+
+  for (let i = 0; i < str1.length; i++) {
+    currStr1 = str1[i];
+    if (charCheck[currStr1]) {
+      delete charCheck[currStr1];
+    } else {
+      charCheck[currStr1] = true;
+    }
+  }
+
+  return Object.keys(charCheck).length > 1 ? false : true;
+};
+
+/**
+ * Execution default cmd>node.js
+ * @purpose :> takes a command-line argument N, asks you to think
+ * of a number between 0 and N-1, where N = 2^n,
+ * and always guesses the answer with n questions.
+ */
+
+exports.binarySort = number => {
+  var n = 1;
+
+  for (var i = 1; i <= number; i++) {
+    n = n * 2;
+  }
+  var min = 0;
+  var max = n;
+  var guess = min + max / 2;
+  var num1 = 0;
+  var tries = 1;
+  if (max >= min) {
+    while (num1 != 1) {
+      console.log("1.Is your number" + guess + "?");
+      console.log("2.Is your number higher than " + guess + "?");
+      console.log("3.Is your number lower than " + guess + "?");
+
+      var num1 = input.question("enter The input:");
+
+      if (num1 == 2) {
+        min = guess;
+        guess = min + (max - guess) / 2;
+        tries++;
+      } else if (num1 == 3) {
+        max = guess;
+        guess = min + (guess - min) / 2;
+        tries++;
+      }
+    }
+  }
+  console.log(tries + " tries required to find " + Math.floor(guess));
+  return tries;
 };

@@ -9,6 +9,8 @@
  */
 const access = require("../Qudratic/Qudraticbl");
 let input = require("readline-sync");
-let input2 = input.question("Enter the value of an input2 ");
-let input3 = input.question("Enter the value of an input3");
-access.qudratic(input1, input2, input3);
+let input1 = input.questionInt("Enter the value of an input 1 ");
+let input2 = input.questionInt("Enter the value of an input 2 ");
+let input3 = input.questionInt("Enter the value of an input 3 ");
+var output=access.qudratic(input1, input2, input3);
+return output

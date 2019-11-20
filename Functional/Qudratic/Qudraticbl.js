@@ -16,4 +16,5 @@ exports.qudratic = (input1, input2, input3) => {
   } catch (e) {
     console.log(e);
   }
+  return root1,root2;
 };

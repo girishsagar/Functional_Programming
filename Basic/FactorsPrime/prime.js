@@ -9,3 +9,4 @@ const input = require("readline-sync");
 const access = require("../FactorsPrime/primebl");
 let number = input.question("Enter the number to find PrimeFactors ");
 access.primefact(number);
+return number;
