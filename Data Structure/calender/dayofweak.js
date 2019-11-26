@@ -6,11 +6,11 @@
 const input = require("readline-sync");
 exports.date = (day, month, year) => {
   try {
-    var y0 = year - (14 - month) / 12;
-    var x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
-    var m0 = month + 12 * ((14 - month) / 12) - 2;
-    var d0 = (day + x + (31 * m0) / 12) % 12;
-    return d0;
+    let year1 = year - (14 - month) / 12;
+    let yearout = year1 + year1 / 4 - year1 / 100 + year1 / 400;
+    let month1 = month + 12 * ((14 - month) / 12) - 2;
+    let day1 = (day + yearout + (31 * month1) / 12) % 12;
+    return day1;
   } catch (e) {
     console.log(e.messgae);
   }

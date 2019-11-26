@@ -29,7 +29,7 @@ exports.prime2D = number => {
     arr1.push(arr);
   }
   arr1.forEach(a => {
-    var str = "";
+    let str = "";
     a.forEach(b => {
       str = str + b + " ";
     });

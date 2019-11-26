@@ -23,9 +23,3 @@ console.log("The pre-order is ");
 Bst.preorder(root);
 console.log("The Post-Order is ");
 Bst.postorder(root);
-
-// var bst = new BinarySearchTree();
-// bst.insert(25);
-// bst.insert(45);
-// bst.insert(10);
-// bst.insert(85);

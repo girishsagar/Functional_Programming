@@ -37,6 +37,10 @@ class BinarySearchTree {
       this.inorder(node.right);
     }
   }
+  /**
+   * 
+   * @param {*} node 
+   */
   preorder(node) {
     if (node != null) {
       console.log(node.data);
