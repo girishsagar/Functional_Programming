@@ -1,13 +1,20 @@
+/**
+ * Execution default cmd>node.js
+ * @description:Take user input for a number, if found then pop the number out 
+ * of the list else insert the number in appropriate position
+ * @file :orderlist.js
+ * @module:Data Stracture
+ * @author :Girish Sagar <girishsagar51@gmail.com>
+ * @version :12.11.1 (node)
+ * @since :23-Nov-2019
+ */
 const input = require("readline-sync");
-
-let list = require("../../DatastractureUtility/linkedlistutility");
+let list = require("../../data structureUtility/linkedlistutility");
 let fs = require("fs");
 let file = fs.readFileSync("../DatastractureUtility/file2.txt");
-
 let olist = new list.LinkedList(); //object
 fileArr = file.toString().split(" ");
 console.log(fileArr);
-
 try {
   fileArr.forEach(element => {
     olist.insertFirst(parseInt(element));

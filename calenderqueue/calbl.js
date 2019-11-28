@@ -12,7 +12,7 @@ qCalen = (month, year) => {
   Weak = weekDay.date(1, month, year);
   let calen = [];
   let days = ["Sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  var k = 1;
+  let k = 1;
   /**
    * @varible :monthdays
    * @descrption :the month days are used to print a how many days

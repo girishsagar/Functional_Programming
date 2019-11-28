@@ -3,7 +3,7 @@
  * @purpose : Read the Text from a file, split it into words and
  * arrange it as Linked List. Take a user input to search a Word
  * in the List. If the Word is not found then add it to the list,
- * and if it found then remove the word from the List. In the end 
+ * and if it found then remove the word from the List. In the end
  * save the list into a file
  */
 class Node {
@@ -13,8 +13,8 @@ class Node {
     this.next = next;
   }
 }
+//creating aLinkedlist class
 class LinkedList {
-  //creating aLinkedlist class
   constructor() {
     this.head = null;
     this.size = 0;
@@ -24,7 +24,7 @@ class LinkedList {
     this.head = new Node(data, this.head);
     this.size++;
   }
-  //Printing the List
+  //Printing the data
   printList() {
     let current = this.head;
     while (current !== null) {
@@ -32,7 +32,7 @@ class LinkedList {
       current = current.next;
     }
   }
-  //InsertLast
+  //Insert the element at last
   insertLast(data) {
     let node = new Node(data);
     let current;
@@ -50,7 +50,7 @@ class LinkedList {
   }
   //Sorting the list in order
   sortedInsert(data) {
-    let node   = new Node(data);
+    let node = new Node(data);
     let current = this.head;
     if (!this.head || node.data <= current.data) {
       node.next = this.head;
@@ -113,7 +113,7 @@ class LinkedList {
     }
     this.size--;
   }
-  //Deleting an a elemnt at Last
+  //Deleting an a elemnt at Last p
   deleteLast() {
     if (this.head) {
       let current = this.head;
@@ -130,8 +130,8 @@ class LinkedList {
       console.log("Nothing to delete");
     }
   }
+  //putting data into array
   getArr() {
-    //q.enqueue(data1);
     let arr = [];
     let current = this.head;
     while (current !== null) {
@@ -140,6 +140,7 @@ class LinkedList {
     }
     return arr;
   }
+  //deleting an element at specified position
   deleteElement(data) {
     let current = this.head;
     if (!this.head) {
@@ -157,6 +158,7 @@ class LinkedList {
     }
     this.size--;
   }
+  //Sorting an data the duplicate a words
   sortedInsertwodupli(data) {
     let node = new Node(data);
     let current = this.head;
@@ -177,6 +179,7 @@ class LinkedList {
       this.size++;
     }
   }
+  //this method will check if the element present delete else add to the file
   sortedInstDupFalsOrAdd(data) {
     let node = new Node(data);
     let current = this.head;
@@ -197,12 +200,13 @@ class LinkedList {
       this.size++;
     }
   }
+  //checking for an list is Empty or not if empty it ill display null
   isEmpty() {
     this.isEmpty();
     {
       return this.size == 0;
     }
-  } 
+  }
 }
 
 module.exports = {

@@ -5,6 +5,10 @@
  * order the performance of operations. Ensure parentheses must appear
  * in a balanced fashion.
  */
+/**
+ * @class:Node
+ * @description :Creating a Empty class with twd varible data and previous
+ */
 class Node {
   constructor(data) {
     this.data = data;
@@ -187,7 +191,6 @@ class Deque {
     }
   };
 }
-
 module.exports = {
   Node,
   Stack,
