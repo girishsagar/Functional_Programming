@@ -1,0 +1,41 @@
+{
+    "Doctor": [
+        {
+            "name": "Ashoak kumar",
+            "id": "doct001",
+            "Specialization": "health care"
+        }
+    ],
+    "Patient": [
+        {
+            "name": "Girish",
+            "id": "p01",
+            "phone": 9663291187
+        },
+        {
+            "name": "sagar",
+            "id": "p02",
+            "phone": 23123
+        },
+        {
+            "name": "arun",
+            "id": "p003",
+            "phone": 96632923
+        },
+        {
+            "name": "harish",
+            "id": "p004",
+            "phone": 5656589
+        },
+        {
+            "name": "harishkumara",
+            "id": "p005",
+            "phone": 65656565
+        },
+        {
+            "name": "karun",
+            "id": "p006",
+            "phone": 585858
+        }
+    ]
+}

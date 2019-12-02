@@ -1,0 +1,36 @@
+[
+    {
+        "firstname": "Girish",
+        "lastname": "sagar",
+        "address": "hous_no 07",
+        "phonenumber": 9663291187,
+        "city": "banglore",
+        "state": "Karnataka",
+        "zipcode": 562773
+    },
+    {
+        "firstname": "Arun",
+        "lastname": "kumar",
+        "address": "house no 45",
+        "phonenumber": 7845213699,
+        "city": "Mysore",
+        "state": "Karnataka",
+        "zipcode": 589789
+    },
+    {
+        "firstname": "sdes",
+        "lastname": "ss",
+        "houseno": "ss",
+        "city": 123,
+        "state": "s",
+        "zipcode": "s"
+    },
+    {
+        "firstname": "channa\\",
+        "lastname": "basava\\",
+        "houseno": "hsr",
+        "city": 966,
+        "state": "banglore",
+        "zipcode": "kar"
+    }
+]

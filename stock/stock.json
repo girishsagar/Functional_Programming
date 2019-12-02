@@ -1,0 +1,21 @@
+{
+    "Stock": [
+        {
+            "StockName": "Airtel",
+            "NumOfShares": 100,
+            "SharePrice": 150
+        },
+        
+        {
+            "StockName": "BSNL",
+            "NumOfShares": 25,
+            "SharePrice": 55
+        },
+        
+        {
+            "StockName": "JIO",
+            "NumOfShares": 125,
+            "SharePrice": 75
+        }
+    ]
+}

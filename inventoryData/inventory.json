@@ -1,0 +1,38 @@
+{
+    "Rice": [
+        {
+            "name": "whiterice",
+            "price": 45.5,
+            "weight": 50
+        },
+        {                                
+            "name": "brownrice",
+            "price": 55.5,
+            "weight": 10
+        }
+    ],
+    "Pulses": [
+        {
+            "name": "limepulse",
+            "price": 85,
+            "weight": 15
+        },
+        {
+            "name": "legume",
+            "price": 125,
+            "weight": 25
+        }
+    ],
+    "Wheats": [
+        {
+            "name": "oats",
+            "price": 55.5,
+            "weight": 85
+        },
+        {
+            "name": "buckwheat",
+            "price": 85.3,
+            "weight": 10
+        }
+    ]
+}
