@@ -11,7 +11,7 @@
  * @function :prime2D
  * @description :calling a  prime 2D function
  */
-const access = require("./arryprimebl");
+const access = require("./arryPrimeBL");
 const input = require("readline-sync");
 let number = input.question("enter the Number ");
 access.prime2D(number);

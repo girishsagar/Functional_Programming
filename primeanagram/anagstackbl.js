@@ -37,7 +37,7 @@ try {
 
         if (prime(m, n)) {
           b.push(m, n);
-          //b.push(n);
+          b.push(n);
         }
       }
     }

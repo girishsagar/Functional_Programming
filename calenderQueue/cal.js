@@ -9,7 +9,7 @@
 let input = require("readline-sync");
 let month = input.questionInt("Enter the Month ");
 let year = input.questionInt("Enter the Year ");
-const printCal = require("./calbl");
+const printCal = require("./calBl");
 calen = printCal.qCalen(month, year);
 calen.forEach(ele => {
   str = "";

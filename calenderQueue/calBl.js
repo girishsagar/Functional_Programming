@@ -4,7 +4,7 @@
  * @requires :importing an suprrting  method from an file
  * @requires :importing a datastracture to store a value in queue methos
  */
-const Qu = require("../DatastractureUtility/datstractureutility");
+const Qu = require('../data structureUtility/datstractureutility');
 const leapYear = require("../Calender/Leapyear");
 const weekDay = require("../Calender/Dayofweak");
 qCalen = (month, year) => {

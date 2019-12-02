@@ -6,7 +6,7 @@
  * @since :23-Nov-2019
  */
 const input = require("readline-sync");
-const access = require("../binarytree/binarybl");
+const access = require("./binaryBl");
 let Bst = new access.BinarySearchTree();
 let num = input.question("Enter the no of inputs:");
 for (let i = 0; i < num; i++) {
