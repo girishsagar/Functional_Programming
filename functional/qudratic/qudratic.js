@@ -7,7 +7,7 @@
  * @version:6.11.3
  * @since:14-Nov-2019
  */
-const access = require("../Qudratic/Qudraticbl");
+const access = require("./qudraticBl");
 let input = require("readline-sync");
 let input1 = input.questionInt("Enter the value of an input 1 ");
 let input2 = input.questionInt("Enter the value of an input 2 ");
