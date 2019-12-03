@@ -3,9 +3,9 @@
  * @module: Design Patterns
  * @author: Girish Sagar, <girishsagar51@gmai.com>
  * @version:6.11.3
- * @since:30-Nov-2019
+ * @since:02-Dec-2019
  */
-//Declare var as an prive varible
+//Declare var as an private varible
 var Singleton = (function() {
   let instance;
   function createInstance() {
@@ -30,5 +30,5 @@ run = () => {
     ? console.log("Oops.. not singleTon")
     : console.log("hey..! SingleTon");
 };
-
+//calling a function
 run();

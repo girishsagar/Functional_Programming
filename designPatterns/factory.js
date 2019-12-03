@@ -1,11 +1,23 @@
 /**
- *
+ * @filename :factory.js
+ * @module: Design pattern (Creational Pattern)
+ * @author: Girish Sagar, <girishsagar51@gmai.com>
+ * @version:6.11.3
+ * @since:02-Dec-2019
+ */
+/**
+ * @class:Company
+ * @description:defining a company class having a one property " Key"
  */
 class Company {
   constructor(key) {
     this.key = key;
   }
 }
+/**
+ * @class:Pc
+ * @description :Extending an parent class property and with two new property name and type (Hierarchical) inheritance
+ */
 class Pc extends Company {
   constructor(key, name) {
     super(key);
@@ -13,6 +25,10 @@ class Pc extends Company {
     this.type = "Product PC";
   }
 }
+/**
+ * @class:Laptop
+ * @description :Extending an parent class property and with one new property name (Hierarchical) inheritance
+ */
 class Laptop extends Company {
   constructor(key, name) {
     super(key);
@@ -20,7 +36,10 @@ class Laptop extends Company {
     this.type = "Product Laptop";
   }
 }
-
+/**
+ * @class:CompanyServer
+ * @description :Extending an parent class property and with two new property name,type (Hierarchical) inheritance
+ */
 class CompanyServer extends Company {
   constructor(key, name) {
     super(key);
@@ -28,7 +47,10 @@ class CompanyServer extends Company {
     this.type = "Product server";
   }
 }
-
+/**
+ * @function:computeFactory
+ * @description;adding new function inside acomputefactory
+ */
 function computerFactory() {
   this.device = (key, name, type) => {
     switch (type) {
@@ -43,10 +65,13 @@ function computerFactory() {
     }
   };
 }
-
-function say() {
+/**
+ * @function:say
+ * @description:printing the deatails
+ */
+say = () => {
   console.log(this.key + " The product " + this.name + " belongs " + this.type);
-}
+};
 //creating an instance of an object using "new " keyword
 const cf = new computerFactory();
 let factory = [];
