@@ -1,0 +1,62 @@
+.loginpage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-display: bold;
+}
+.login-card {
+  font-display: center;
+  width: 350px;
+  height: 50vh;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+/* div {
+  margin: 10px;
+} */
+.SignUp {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.sign-card {
+  font: outline;
+  font-display: center;
+  width: 350px;
+  height: 73vh;
+  flex-direction: column;
+  /* display: flexbox; */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.signupbutton {
+  border-radius: 25px;
+  padding: 50px;
+  width: 325px;
+  margin-top: 25px;
+}
+.loged {
+  border-radius: 25px;
+  width: 320px;
+  padding: 80px;
+}
+.loginbutton {
+  align-content: center;
+  align-items: flex;
+  margin-top: 30px;
+}
+.regbutton {
+  margin-top: 10px;
+}
