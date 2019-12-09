@@ -1,3 +1,11 @@
+/**
+ * @file: regest.jsx
+ * @description: user registeration from having with a fields.
+ * @module:React js and firebase
+ * @author :Girish Sagar <girishsagar51@gmail.com>
+ * @version :12.11.1 (node)
+ * @since :7-dec-2019
+ */
 import React, { Component } from "react";
 import { Card, TextField, IconButton, Button, Avatar } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
@@ -46,7 +54,10 @@ const thm = createMuiTheme({
     }
   }
 });
-
+/**
+ * @class : registraction extending from parent class React Component
+ * @description: having a prop (property)/varible
+ */
 class registration extends Component {
   constructor(props) {
     super(props);
@@ -60,12 +71,19 @@ class registration extends Component {
       snackbarMsg: ""
     };
   }
+  /**
+   * @function:snackbar
+   * @description:displaying the messaga/alertBox
+   */
   snackbarClose = e => {
     this.setState({
       snackbarOpen: false
     });
   };
-
+  /**
+   * @function: handlefirstName
+   * @description: the function will handle the textbox file and regx/validation
+   */
   handlefirstName = event => {
     let firstName = event.target.value;
     this.setState({
@@ -116,9 +134,18 @@ class registration extends Component {
       password: password
     });
   };
+  /**
+   * @function :onLogin
+   * @description :it will navigate to the login page
+   */
   onLogin = () => {
     this.props.history.push("/Login");
   };
+  /**
+   * @function :submit
+   * @description:it will chech for the every textbox should be fill/ empty
+   * if it will empty it display the messag
+   */
   submit = () => {
     if (this.state.firstName === "") {
       this.setState({
@@ -140,7 +167,7 @@ class registration extends Component {
         snackbarOpen: true,
         snackbarMsg: " passoword cannot be empty "
       });
-      // passing an data to the firebase 
+      // passing an data to the firebase
     } else {
       const user = {
         firstName: this.state.firstName,
@@ -164,6 +191,7 @@ class registration extends Component {
       });
     }
   };
+
   render() {
     return (
       <div className="SignUp">
@@ -200,7 +228,7 @@ class registration extends Component {
             />
 
             <TextField
-              required
+              required="true"
               id="Email"
               name="Email"
               label="Email"
@@ -209,7 +237,6 @@ class registration extends Component {
               fullWidth
               onChange={event => this.handleEmail(event)}
             />
-
             <TextField
               required
               id="lastName"

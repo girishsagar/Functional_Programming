@@ -1,3 +1,11 @@
+/**
+ * @file: login.jsx
+ * @description: user login page its validating an database user .
+ * @module:React js and firebase
+ * @author :Girish Sagar <girishsagar51@gmail.com>
+ * @version :12.11.1 (node)
+ * @since :7-dec-2019
+ */
 import React, { Component } from "react";
 import { Card, TextField, Button, IconButton, Avatar } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -5,6 +13,7 @@ import { withRouter } from "react-router-dom";
 import { Snackbar } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { userlogin } from "../controller/userController";
 const thm = createMuiTheme({
   overrides: {
     MuiAvatar: {
@@ -26,6 +35,10 @@ const thm = createMuiTheme({
     }
   }
 });
+/**
+ * @class : Login
+ * @description : loging class is extend from parent calss React Component
+ */
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -36,18 +49,34 @@ class Login extends Component {
       SnackbarMsg: ""
     };
   }
-
+  /**
+   * @function :snackbarClose
+   * @description :it will check from snackbar messaga
+   */
   snackbarClose = e => {
     this.setState({ snackbarOpen: false });
   };
+  /**
+   * @function : onRegister
+   * @description :it i'll naviagate to the registraction page
+   */
   onRegister = () => {
     this.props.history.push("/register");
   };
+
   handleEmail = event => {
     let Email = event.target.value;
     this.setState({
       Email: Email
     });
+    // if (
+    //   Email == !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
+    // ) {
+    //   this.setState({
+    //     snackbarOpen: true,
+    //     snackbarMsg: "Give valid Email-id..!"
+    //   });
+    // }
   };
   handlepassword = event => {
     let password = event.target.value;
@@ -62,13 +91,13 @@ class Login extends Component {
         snackbarOpen: true,
         snackbarMsg: " Email cannot be empty"
       });
-    } else if (
-      !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
-    ) {
-      this.setState({
-        snackbarOpen: true,
-        snackbarMsg: "Give valid Email-id..!"
-      });
+      // } else if (
+      //   !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2event,3}$/.test(this.state.Email)
+      // ) {
+      //   this.setState({
+      //     snackbarOpen: true,
+      //     snackbarMsg: "Give valid Email-id..!"
+      //   });
     } else if (this.state.password === "") {
       this.setState({
         snackbarOpen: true,
@@ -79,9 +108,36 @@ class Login extends Component {
         snackbarOpen: true,
         snackbarMsg: "password must be of atleast 6 characters long..!"
       });
+    } else {
+      //navigation to the firbase controller
+      const user = {
+        Email: this.state.Email,
+        password: this.state.password
+      };
+      userlogin(user, (err, data) => {
+        if (err) {
+          this.setState({
+            snackbarOpen: true,
+            snackbarMsg: err,
+            Email: "",
+            password: ""
+          });
+        } else {
+          if (data === "success") {
+            this.setState({
+              snackbarOpen: true,
+              snackbarMsg: "Sign In SucessFull "
+            });
+          }
+          //Setting a time out for responsing an a page 4 sec
+          setTimeout(() => {
+            this.props.history.push("www.google.com");
+          }, 2000);
+        }
+      });
     }
   };
-
+  //form field of page
   render() {
     return (
       <div className="loginpage">
@@ -101,8 +157,9 @@ class Login extends Component {
                 name="Email"
                 label="Email"
                 variant="standard"
+                autoFocus
                 fullWidth
-                onChange={e => this.handleEmail(e)}
+                onChange={event => this.handleEmail(event)}
               />
               <div>
                 <TextField
@@ -112,7 +169,7 @@ class Login extends Component {
                   label="Password"
                   variant="standard"
                   fullWidth
-                  onChange={this.handlepassword}
+                  onChange={event => this.handlepassword(event)}
                 />
               </div>
               <div className="loginbutton">
