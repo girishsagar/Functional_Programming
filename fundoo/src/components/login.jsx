@@ -63,6 +63,9 @@ class Login extends Component {
   onRegister = () => {
     this.props.history.push("/register");
   };
+  onforgetpass = () => {
+    this.props.history.push("/forget");
+  };
 
   handleEmail = event => {
     let Email = event.target.value;
@@ -168,6 +171,7 @@ class Login extends Component {
                   name="password"
                   label="Password"
                   variant="standard"
+                  type="password"
                   fullWidth
                   onChange={event => this.handlepassword(event)}
                 />
@@ -193,7 +197,7 @@ class Login extends Component {
                 </Button>
               </div>
               <div className="lfbutton">
-                <Button onClick={this.handleForgotClick} color="primary">
+                <Button onClick={this.onforgetpass} color="primary">
                   Forgot Password??
                 </Button>
               </div>
