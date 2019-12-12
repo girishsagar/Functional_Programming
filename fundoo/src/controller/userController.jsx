@@ -13,7 +13,7 @@ export async function registeration(user) {
       firstName: user.firstName,
       lastName: user.lastName,
       Email: user.Email,
-      password: user. password
+      password: user.password
     };
     await firebase.auth().createUserWithEmailAndPassword(user.Email, data.password);
     db.collection("user").doc(firebase.auth().currentUser.uid).set(data);
@@ -42,3 +42,17 @@ export async function userlogin(user, cb) {
     cb(error.message);
   }
 }
+  export async function forgotPassword(Email) {
+    try {
+    await firebase.auth().sendPasswordResetEmail(Email)
+    // var userData = db.collection("user").doc(firebase.auth().currentUser.uid);
+    // await userData.get();
+    return 'success';
+    }
+    catch (error) {
+    console.log(error)
+    return error.message;
+    }
+    }
+
+

@@ -12,8 +12,8 @@ import { withRouter } from "react-router-dom";
 import { Snackbar } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { registeration } from "../controller/userController";
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 const thm = createMuiTheme({
   overrides: {
     MuiInputLabel: {
@@ -39,7 +39,7 @@ const thm = createMuiTheme({
         height: "60px"
       },
       colorDefault: {
-        backgroundColor: "red",
+        backgroundColor: "black",
         marginLeft: "17px",
         marginTop: "-4px"
       }
@@ -47,8 +47,8 @@ const thm = createMuiTheme({
     MuiSvgIcon: {
       root: {
         color: "white",
-        width: "200px",
-        height: "41px",
+        width: "220px",
+        height: "40px",
         left: "150px"
       }
     }
@@ -66,7 +66,6 @@ class registration extends Component {
       lastName: "",
       Email: "",
       password: "",
-      // confirmPassword: "",
       snackbarOpen: false,
       snackbarMsg: ""
     };
@@ -199,7 +198,7 @@ class registration extends Component {
           <Card className="sign-card">
             <div className="avatar">
               <Avatar>
-                <LockOutlinedIcon />
+                <AccountCircleRoundedIcon />
               </Avatar>
             </div>
             <div className="loge">SignUp</div>
