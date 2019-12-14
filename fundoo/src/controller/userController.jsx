@@ -45,8 +45,7 @@ export async function userlogin(user, cb) {
   export async function forgotPassword(Email) {
     try {
     await firebase.auth().sendPasswordResetEmail(Email)
-    // var userData = db.collection("user").doc(firebase.auth().currentUser.uid);
-    // await userData.get();
+   
     return 'success';
     }
     catch (error) {

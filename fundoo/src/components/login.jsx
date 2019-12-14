@@ -72,14 +72,7 @@ class Login extends Component {
     this.setState({
       Email: Email
     });
-    // if (
-    //   Email == !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
-    // ) {
-    //   this.setState({
-    //     snackbarOpen: true,
-    //     snackbarMsg: "Give valid Email-id..!"
-    //   });
-    // }
+    
   };
   handlepassword = event => {
     let password = event.target.value;
@@ -94,13 +87,7 @@ class Login extends Component {
         snackbarOpen: true,
         snackbarMsg: " Email cannot be empty"
       });
-      // } else if (
-      //   !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2event,3}$/.test(this.state.Email)
-      // ) {
-      //   this.setState({
-      //     snackbarOpen: true,
-      //     snackbarMsg: "Give valid Email-id..!"
-      //   });
+      
     } else if (this.state.password === "") {
       this.setState({
         snackbarOpen: true,

@@ -23,11 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 /node_modules
-package.json
 package-lock.json
+package.json
 README.md
-
-
 
 
 
