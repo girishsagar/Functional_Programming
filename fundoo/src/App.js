@@ -6,7 +6,8 @@ import "./navigation.css";
 import appBar from "./components/appBar";
 import regst from "./components/regst";
 import forgetPassword from "./components/forgetPassword";
-import drawer from './components/drawer'
+import drawer from "./components/drawerNavigation"
+import dropDown from "./components/dropDown"
 class App extends Component {
   render() {
     return (
@@ -17,6 +18,7 @@ class App extends Component {
           <Route path="/forget" component={forgetPassword}></Route>
           <Route path="/appBar" component={appBar}></Route>
           <Route path="/drawer" component={drawer}></Route>
+          <Route path="/dropDown" component={dropDown}></Route>
         </Switch>
       </Router>
     );

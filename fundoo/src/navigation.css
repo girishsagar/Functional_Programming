@@ -32,8 +32,60 @@
   justify-content: space-between;
   width: 65em;
 }
+
+/* drawernavigation */
 .notes{
- 
+    display: flex;
     justify-content: space-around;
-   
+    align-items: center;
+    width: 250px;
+    border-radius: 400px;
+  font-display: block;
+}
+.notes:hover{
+  background-color:rgb(233, 233, 10)
+}
+.Reminder{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  border-radius: 400px;
+ font-display: block;
+}
+.Reminder:hover{
+background-color:rgb(233, 233, 10)
+}
+.labels{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  border-radius: 400px;
+
+  font-display: block;
+}
+.labels:hover{
+background-color:rgb(233, 233, 10)
+}
+.Archive{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  border-radius: 400px;
+  font-display: block;
+}
+.Archive:hover{
+background-color:rgb(233, 233, 10)
+}
+.name{
+  color:green
+}
+.pro{
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 400px;
+  
 }

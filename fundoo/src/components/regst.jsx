@@ -290,3 +290,12 @@ class registration extends Component {
   }
 }
 export default withRouter(registration);
+
+
+
+//                 <Drawer
+//                     variant="persistent"
+//                     overflow="auto"
+//                     open={this.props.open}
+//                     width={250}
+//                 >

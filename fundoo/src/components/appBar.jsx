@@ -7,8 +7,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-import AccountCircleSharpIcon from "@material-ui/icons/AccountCircleSharp";
 import ViewComfySharpIcon from "@material-ui/icons/ViewComfySharp";
+import DrawerNav from "./drawerNavigation";
+import Dropdown from "./dropDown";
+import Avatar from "@material-ui/core/Avatar";
 const thm = createMuiTheme({
   overrides: {
     MuiAppBar: {
@@ -27,6 +29,17 @@ const thm = createMuiTheme({
       input: {
         width: "500px"
       }
+    },
+    MuiDrawer: {
+      paperAnchorDockedLeft: {
+        top: "65px"
+      }
+    },
+    MuiAvatar: {
+      colorDefault: {
+        color: "mediumspringgreen",
+        backgroundColor: "black"
+      }
     }
   }
 });
@@ -34,7 +47,19 @@ const thm = createMuiTheme({
 class navigation extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open: false,
+      anchorEl:null
+    };
+  }
+  menuOpen = () => {
+    this.setState({ open: !this.state.open });
+  };
+  menuItem = (e) => {
+    this.setState({ anchorEl: e.currentTarget });
+  };
+  closeMenu=()=>{
+this.setState({anchorEl:null})
   }
   render() {
     return (
@@ -44,7 +69,7 @@ class navigation extends Component {
             <Toolbar>
               <div className="Menu_Button">
                 <div>
-                  <IconButton>
+                  <IconButton onClick={this.menuOpen}>
                     <MenuIcon />
                   </IconButton>
                 </div>
@@ -77,13 +102,20 @@ class navigation extends Component {
               </div>
 
               <div className="profile_Icon">
-                <div>
-                  <AccountCircleSharpIcon />
+                <div className="name">
+                  {/* <AccountCircleSharpIcon /> */}
+
+                  <Avatar onClick={this.menuItem}
+                  aria-owns="simple-menu" >G </Avatar>
+              
                 </div>
               </div>
             </Toolbar>
           </AppBar>
+          <DrawerNav open={this.state.open} />
+           <Dropdown anchorEl={this.state.anchorEl} closeMenu={this.closeMenu}/>
         </MuiThemeProvider>
+       
       </div>
     );
   }

@@ -121,7 +121,7 @@ class Login extends Component {
           }
           //Setting a time out for responsing an a page 4 sec
           setTimeout(() => {
-            this.props.history.push("www.google.com");
+            this.props.history.push("/appBar");
           }, 2000);
         }
       });
