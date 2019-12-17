@@ -7,17 +7,26 @@
 .Search_Base {
   display: flex;
   align-items: center;
-  width: 35em;
+  width: 40em;
   height: 43px;
-  border: 1px solid;
-  border-radius: 18px;
-  background-color: rgba(253, 249, 249, 0.986);
+  border: 0px;
+  border-radius: 5px;
+  background-color:#d3d3d345;
+  margin-left: 100px;
+ 
 }
+.Search_Base:hover{
+  background-color:white;
+  box-shadow: 10px;
+}
+
 .searchingbar {
   display: flex;
   justify-content: center;
   width: 52em;
+  border-color: grey;
 }
+
 .icons {
   display: flex;
   justify-content: space-around;
@@ -32,31 +41,33 @@
   justify-content: space-between;
   width: 65em;
 }
-
+.cross {
+  margin-left: -35px;
+}
 /* drawernavigation */
-.notes{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 250px;
-    border-radius: 400px;
-  font-display: block;
-}
-.notes:hover{
-  background-color:rgb(233, 233, 10)
-}
-.Reminder{
+.notes {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 250px;
   border-radius: 400px;
- font-display: block;
+  font-display: block;
 }
-.Reminder:hover{
-background-color:rgb(233, 233, 10)
+.notes:hover {
+  background-color: rgb(233, 233, 10);
 }
-.labels{
+.Reminder {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 250px;
+  border-radius: 400px;
+  font-display: block;
+}
+.Reminder:hover {
+  background-color: rgb(233, 233, 10);
+}
+.labels {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -65,10 +76,10 @@ background-color:rgb(233, 233, 10)
 
   font-display: block;
 }
-.labels:hover{
-background-color:rgb(233, 233, 10)
+.labels:hover {
+  background-color: rgb(233, 233, 10);
 }
-.Archive{
+.Archive {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -76,16 +87,85 @@ background-color:rgb(233, 233, 10)
   border-radius: 400px;
   font-display: block;
 }
-.Archive:hover{
-background-color:rgb(233, 233, 10)
+.Archive:hover {
+  background-color: rgb(233, 233, 10);
 }
-.name{
-  color:green
+.name {
+  color: green;
 }
-.pro{
+.pro {
   display: flexbox;
   justify-content: space-between;
   align-items: center;
   border-radius: 400px;
-  
+}
+/* createNotes CSS */
+.card{
+  width: 25em;
+  margin-top: 8%;
+  align-items: center;
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; 
+ padding: 15px;
+}
+.create_notes1{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.checkbox{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 35em;
+  margin-top: -40px;
+  border-radius: 400px;
+}
+.draw{
+  width: 41em;
+    display: flex;
+    margin-top: 40;
+    margin-top: -26px;
+    padding: 1px;
+    justify-content: space-around;
+    align-items: center;
+}
+.imageicon{
+  display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 46em;
+    margin-top: -21px;
+}
+.card1{
+  width: 25em;
+  height:80px;
+  margin-top: 0%;
+  align-items: center;
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  padding: 15px;
+  margin-left: 21em;;
+}
+.Bell{
+  margin-top: 23px;
+    margin-left: 5px;
+}
+.add{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -30px;
+    margin-left: 52px;
+}
+
+@media only screen and (max-width: 600px) {
+  .add{
+    margin-top: 10px;
+  }
+}
+.color{
+  display: flex;
+  justify-content: space-between;
+  margin-top: -30px;
+  margin-left: 52px;
 }

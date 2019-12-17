@@ -11,6 +11,7 @@ import ViewComfySharpIcon from "@material-ui/icons/ViewComfySharp";
 import DrawerNav from "./drawerNavigation";
 import Dropdown from "./dropDown";
 import Avatar from "@material-ui/core/Avatar";
+
 const thm = createMuiTheme({
   overrides: {
     MuiAppBar: {
@@ -27,7 +28,8 @@ const thm = createMuiTheme({
     },
     MuiInputBase: {
       input: {
-        width: "500px"
+        width: "500px",
+        padding: "15px"
       }
     },
     MuiDrawer: {
@@ -40,6 +42,12 @@ const thm = createMuiTheme({
         color: "mediumspringgreen",
         backgroundColor: "black"
       }
+    },
+    MuiPaper: {
+      rounded: {
+        marginTop: "50px",
+        marginLeft: "-20px"
+      }
     }
   }
 });
@@ -49,18 +57,18 @@ class navigation extends Component {
     super(props);
     this.state = {
       open: false,
-      anchorEl:null
+      anchorEl: null
     };
   }
   menuOpen = () => {
     this.setState({ open: !this.state.open });
   };
-  menuItem = (e) => {
+  menuItem = e => {
     this.setState({ anchorEl: e.currentTarget });
   };
-  closeMenu=()=>{
-this.setState({anchorEl:null})
-  }
+  handleClose = event => {
+    this.setState({ anchorEl: null });
+  };
   render() {
     return (
       <div className="nav">
@@ -105,17 +113,19 @@ this.setState({anchorEl:null})
                 <div className="name">
                   {/* <AccountCircleSharpIcon /> */}
 
-                  <Avatar onClick={this.menuItem}
-                  aria-owns="simple-menu" >G </Avatar>
-              
+                  <Avatar onClick={this.menuItem} aria-owns="simple-menu">
+                    G{" "}
+                  </Avatar>
                 </div>
               </div>
             </Toolbar>
           </AppBar>
           <DrawerNav open={this.state.open} />
-           <Dropdown anchorEl={this.state.anchorEl} closeMenu={this.closeMenu}/>
+          <Dropdown
+            anchorEl={this.state.anchorEl}
+            closeMenu={this.handleClose}
+          />
         </MuiThemeProvider>
-       
       </div>
     );
   }

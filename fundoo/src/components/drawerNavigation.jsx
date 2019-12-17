@@ -38,55 +38,55 @@ class DrawerNav extends React.Component {
           open={this.props.open}
           width={250}
         >
-        <div>
-          <List>
-            <MuiThemeProvider theme={thm}>
-              <div className="notes">
-                <ListItem button key="Note">
-                  <ListItemIcon>
-                    <EmojiObjectsOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Note" />
-                </ListItem>
-              </div>
-              <div className="Reminder">
-                <ListItem button key="Reminder">
-                  <ListItemIcon>
-                    <AddAlertIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Reminder" />{" "}
-                </ListItem>
-              </div>
-              <Divider />
-              <div className="labels">
-                <ListItem button key="Labels">
-                  <ListItemIcon>
-                    <CreateOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Edit labels" />
-                </ListItem>
-              </div>
-              <Divider />
-              <div className="Archive">
-                <ListItem button key="Archive">
-                  <ListItemIcon>
-                    <ArchiveIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Archive" />
-                </ListItem>
-              </div>
-              <Divider />
-              <div className="Trash">
-                <ListItem button key="Trash">
-                  <ListItemIcon>
-                    <DeleteOutlineOutlinedIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Trash" />{" "}
-                </ListItem>
-              </div>
-            </MuiThemeProvider>
-          </List>
-        </div>
+          <div>
+            <List>
+              <MuiThemeProvider theme={thm}>
+                <div className="notes">
+                  <ListItem button key="Note">
+                    <ListItemIcon>
+                      <EmojiObjectsOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Note" />
+                  </ListItem>
+                </div>
+                <div className="Reminder">
+                  <ListItem button key="Reminder">
+                    <ListItemIcon>
+                      <AddAlertIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Reminder" />{" "}
+                  </ListItem>
+                </div>
+                <Divider />
+                <div className="labels">
+                  <ListItem button key="Labels">
+                    <ListItemIcon>
+                      <CreateOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Edit labels" />
+                  </ListItem>
+                </div>
+                <Divider />
+                <div className="Archive">
+                  <ListItem button key="Archive">
+                    <ListItemIcon>
+                      <ArchiveIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Archive" />
+                  </ListItem>
+                </div>
+                <Divider />
+                <div className="Trash">
+                  <ListItem button key="Trash">
+                    <ListItemIcon>
+                      <DeleteOutlineOutlinedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Trash" />{" "}
+                  </ListItem>
+                </div>
+              </MuiThemeProvider>
+            </List>
+          </div>
         </Drawer>
       </div>
     );

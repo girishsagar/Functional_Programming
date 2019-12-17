@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  Drawer
-} from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import { MuiThemeProvider, createMuiTheme ,Menu,MenuItem} from "@material-ui/core";
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  Menu,
+  MenuItem
+} from "@material-ui/core";
 const thm = createMuiTheme({
   overrides: {
     MuiDivider: {
       root: {
-        width: "150px"
+        width: "150px",
+        top: "50px"
       }
     },
     MuiList: {
@@ -31,47 +30,23 @@ class Dropdown extends Component {
   }
   render() {
     return (
-        <Menu
+      <Menu
         id="simple-menu"
         anchorEl={this.props.anchorEl}
         open={Boolean(this.props.anchorEl)}
         onClose={this.props.closeMenu}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleClose}>My account</MenuItem>
-        <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+        <div className="down">
+          <MuiThemeProvider theme={thm}>
+            <div className="drop">
+              <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+              <MenuItem onClick={this.handleClose}>My account</MenuItem>
+              <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+              <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+            </div>
+          </MuiThemeProvider>
+        </div>
       </Menu>
-    //   <div className="drop">
-    //     {/* <Drawer
-    //       variant="persistent"
-    //       overflow="auto"
-    //       open={this.props.open}
-    //       width={250}
-    //     > */}
-    //     <MuiThemeProvider theme={thm}>
-    //       <List>
-    //         <div className="pro">
-    //           <ListItem button key="Profile">
-    //             <ListItemText primary="Profile" />
-    //           </ListItem>
-    //         </div>
-    //         <Divider />
-    //         <div className="settings">
-    //           <ListItem button key="settings">
-    //             <ListItemText primary="Settings" />
-    //           </ListItem>
-    //         </div>
-    //         <Divider />
-    //         <div className="signout">
-    //           <ListItem button key="signOut">
-    //             <ListItemText primary="Sign Out" />
-    //           </ListItem>
-    //         </div>
-    //         <Divider />
-    //       </List>
-    //     </MuiThemeProvider>
-    //     {/* </Drawer> */}
-    //   </div>
     );
   }
 }
