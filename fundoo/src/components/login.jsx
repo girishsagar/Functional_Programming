@@ -72,7 +72,6 @@ class Login extends Component {
     this.setState({
       Email: Email
     });
-    
   };
   handlepassword = event => {
     let password = event.target.value;
@@ -87,7 +86,6 @@ class Login extends Component {
         snackbarOpen: true,
         snackbarMsg: " Email cannot be empty"
       });
-      
     } else if (this.state.password === "") {
       this.setState({
         snackbarOpen: true,
@@ -122,6 +120,7 @@ class Login extends Component {
           //Setting a time out for responsing an a page 4 sec
           setTimeout(() => {
             this.props.history.push("/appBar");
+            // this.props.histroy.push(/dashBoard);
           }, 2000);
         }
       });

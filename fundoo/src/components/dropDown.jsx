@@ -6,6 +6,7 @@ import {
   Menu,
   MenuItem
 } from "@material-ui/core";
+import {Signout, }from "../controller/userController";
 const thm = createMuiTheme({
   overrides: {
     MuiDivider: {
@@ -22,6 +23,10 @@ const thm = createMuiTheme({
     }
   }
 });
+// handleSignOut=()=>{
+//  Signout(err,data){
+
+//  }=
 
 class Dropdown extends Component {
   constructor(props) {
@@ -43,6 +48,7 @@ class Dropdown extends Component {
               <MenuItem onClick={this.handleClose}>My account</MenuItem>
               <MenuItem onClick={this.handleClose}>Settings</MenuItem>
               <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+            
             </div>
           </MuiThemeProvider>
         </div>

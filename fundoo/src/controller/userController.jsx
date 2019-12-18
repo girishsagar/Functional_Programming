@@ -2,9 +2,11 @@
  * importing all firebase,EventEmitter
  * @description:doing an email-validation and email verification
  */
+import jwt from "jsonwebtoken";
 import firebase from "firebase";
 import Firebase from "../firebaseConfig";
 import { EventEmitter } from "events";
+import jwt_decode from "jwt-decode";
 const db = Firebase.firestore();
 //User Registraction firebase
 export async function registeration(user) {
@@ -15,8 +17,12 @@ export async function registeration(user) {
       Email: user.Email,
       password: user.password
     };
-    await firebase.auth().createUserWithEmailAndPassword(user.Email, data.password);
-    db.collection("user").doc(firebase.auth().currentUser.uid).set(data);
+    await firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.Email, data.password);
+    db.collection("user")
+      .doc(firebase.auth().currentUser.uid)
+      .set(data);
     //passing an evnt emitter
     const emitter = new EventEmitter();
     function EmailVerification() {
@@ -33,25 +39,56 @@ export async function registeration(user) {
 //userlogin firebase
 export async function userlogin(user, cb) {
   try {
-    await firebase.auth().signInWithEmailAndPassword(user.Email, user.password);
-    var userData = db.collection("user").doc(firebase.auth().currentUser.uid);
-    await userData.get();
-    cb(null, "success");
+    let userlogin = await firebase
+      .auth()
+      .signInWithEmailAndPassword(user.Email, user.password);
+    const payload = {
+      user_id: userlogin.user.uid,
+      email: userlogin.user.email
+    };
+    let token = jwt.sign(payload, "hsdyusd99d787sd7sjd89sdsd", {
+      expiresIn: 1440
+    });
+    localStorage.setItem("usertoken", token);
+    console.log(token);
+    cb(null, userlogin);
   } catch (error) {
     console.log(error);
     cb(error.message);
   }
 }
-  export async function forgotPassword(Email) {
-    try {
-    await firebase.auth().sendPasswordResetEmail(Email)
-   
-    return 'success';
-    }
-    catch (error) {
-    console.log(error)
+// Forget Password
+export async function forgotPassword(Email) {
+  try {
+    await firebase.auth().sendPasswordResetEmail(Email);
+
+    return "success";
+  } catch (error) {
+    console.log(error);
     return error.message;
-    }
-    }
-
-
+  }
+}
+export async function Signout() {
+  await firebase.auth().firebaseAuthorization.signOut();
+  localStorage.removeItem("usertoken");
+}
+export async function saveNote(data) {
+  try {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    // console.log('kjdkjsdk')
+    const noteData = {
+      title: data.title,
+      description: data.description,
+      user_id: decoded.user_id
+    };
+    db.collection("notes")
+      .doc()
+      .set(noteData);
+    let result = true;
+    return result;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
