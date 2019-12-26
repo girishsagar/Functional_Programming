@@ -11,7 +11,7 @@ import ViewComfySharpIcon from "@material-ui/icons/ViewComfySharp";
 import DrawerNav from "./drawerNavigation";
 import Dropdown from "./dropDown";
 import Avatar from "@material-ui/core/Avatar";
-
+import Notes from "./note";
 const thm = createMuiTheme({
   overrides: {
     MuiAppBar: {
@@ -28,7 +28,7 @@ const thm = createMuiTheme({
     },
     MuiInputBase: {
       input: {
-        width: "500px",
+        width: "250px",
         padding: "15px"
       }
     },
@@ -52,12 +52,13 @@ const thm = createMuiTheme({
   }
 });
 
-class navigation extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      anchorEl: null
+      anchorEl: null,
+      noteArray: []
     };
   }
   menuOpen = () => {
@@ -81,35 +82,37 @@ class navigation extends Component {
                     <MenuIcon />
                   </IconButton>
                 </div>
+              </div>
+              <div className="logo">
                 <div>FundooImage</div>
                 <div>Keep</div>
               </div>
-              <div className="parent_search">
-                <div className="searchingbar">
-                  <div className="Search_Base">
-                    <div>
-                      <SearchIcon />
-                    </div>
-                    <div>
-                      <InputBase placeholder="Search…" />
-                    </div>
-                  </div>
+              {/* <div className="parent_search">
+                <div className="searchingbar"> */}
+              <div className="Search_Base">
+                <div className="searchicon">
+                  <SearchIcon />
                 </div>
+                <div>
+                  <InputBase placeholder="Search…" />
+                </div>
+              </div>
+              {/* </div>
+                </div> */}
 
-                <div className="icons">
-                  <div>
-                    <RefreshIcon />
-                  </div>
-                  <div>
-                    <ShoppingCartOutlinedIcon />
-                  </div>
-                  <div>
-                    <ViewComfySharpIcon />
-                  </div>
+              <div className="appicons">
+                <div>
+                  <RefreshIcon />
+                </div>
+                <div className="cart">
+                  <ShoppingCartOutlinedIcon />
+                </div>
+                <div className="view">
+                  <ViewComfySharpIcon />
                 </div>
               </div>
 
-              <div className="profile_Icon">
+              <div className="profile-Icon">
                 <div className="name">
                   {/* <AccountCircleSharpIcon /> */}
 
@@ -125,10 +128,14 @@ class navigation extends Component {
             anchorEl={this.state.anchorEl}
             closeMenu={this.handleClose}
           />
+          <div>
+            <Notes />
+          </div>
+          {/* {arr} */}
         </MuiThemeProvider>
       </div>
     );
   }
 }
 
-export default withRouter(navigation);
+export default withRouter(Navigation);

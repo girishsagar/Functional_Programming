@@ -25,7 +25,10 @@ const thm = createMuiTheme({
   overrides: {
     MuiCard: {
       root: {
-        borderRadius: "16px"
+        borderRadius: "16px",
+        alignitems: "center",
+        marginTop: "6em",
+        marginLeft: "20em"
       }
     }
   }
@@ -55,9 +58,7 @@ class Notes extends Component {
   changeDescription = e => {
     this.setState({ description: e.currentTarget.value });
   };
-chageColor=()=>{
-  this.state({})
-}
+
   newNote = () => {
     try {
       if (this.state.title === "" && this.state.description === "") {
@@ -100,7 +101,7 @@ chageColor=()=>{
                 onClick={this.openCard}
               />
             </div>
-            <div className="edited" onClick={this.openCard} >
+            <div className="edited" onClick={this.openCard}>
               <div className="checkbox">
                 <Tooltip title="new label">
                   <CheckBoxOutlinedIcon />
@@ -123,7 +124,7 @@ chageColor=()=>{
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "center",
-            color:"white"
+            color: "white"
           }}
           open={this.state.snackbarOpen}
           autoHideDuration={2000}
@@ -138,72 +139,74 @@ chageColor=()=>{
       </div>
     ) : (
       <div>
-        <Card className="card1">
-          <div>
-            <InputBase
-              multiline
-              placeholder="Ttitle"
-              onChange={this.changeTitle}
-              value={this.state.title}
-            />
-          </div>
-          <div>
-            <InputBase
-              multiline
-              placeholder="Take a note..."
-              onChange={this.changeDescription}
-              value={this.state.description}
-            />
-          </div>
+        <MuiThemeProvider theme={thm}>
+          <Card className="card1">
+            <div>
+              <InputBase
+                multiline
+                placeholder="Ttitle"
+                onChange={this.changeTitle}
+                value={this.state.title}
+              />
+            </div>
+            <div>
+              <InputBase
+                multiline
+                placeholder="Take a note..."
+                onChange={this.changeDescription}
+                value={this.state.description}
+              />
+            </div>
 
-          <div className="icons2">
-            <div>
-              <Tooltip title="Reminder">
-                <AddAlertOutlinedIcon />
-              </Tooltip>
+            <div className="icons2">
+              <div>
+                <Tooltip title="Reminder">
+                  <AddAlertOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Collbrate">
+                  <PersonAddOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="select Colors">
+                  <ColorLensOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Add image">
+                  <ImageOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Archive">
+                  <ArchiveOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="More">
+                  <MoreVertOutlinedIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Undo">
+                  <UndoTwoToneIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Tooltip title="Redo">
+                  <RedoTwoToneIcon />
+                </Tooltip>
+              </div>
+              <div>
+                <Button color="primary" onClick={this.newNote}>
+                  Close
+                </Button>
+              </div>
             </div>
-            <div>
-              <Tooltip title="Collbrate">
-                <PersonAddOutlinedIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="select Colors">
-                <ColorLensOutlinedIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="Add image">
-                <ImageOutlinedIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="Archive">
-                <ArchiveOutlinedIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="More">
-                <MoreVertOutlinedIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="Undo">
-                <UndoTwoToneIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Tooltip title="Redo">
-                <RedoTwoToneIcon />
-              </Tooltip>
-            </div>
-            <div>
-              <Button color="primary" onClick={this.newNote}>
-                Close
-              </Button>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        </MuiThemeProvider>
       </div>
     );
   }

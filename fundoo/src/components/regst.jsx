@@ -13,7 +13,7 @@ import { Snackbar } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { registeration } from "../controller/userController";
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
+import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 const thm = createMuiTheme({
   overrides: {
     MuiInputLabel: {

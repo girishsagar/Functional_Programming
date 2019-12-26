@@ -1,30 +1,48 @@
 import React, { Component } from "react";
-import { Card,  InputBase } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import appBar from "../components/appBar"
-import DrawerNav from "../components/drawerNavigation"
+import Navigation from "./appBar";
+import { getNote } from "../controller/userController";
+import Getnote from "./getNote";
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      noteArray: []
+    };
+  }
+  componentDidMount() {
+    getNote()
+      .then(result => {
+        this.setState({
+          noteArray: result
+        });
+      })
 
+      .catch(error => {
+        console.log(error);
+        return error.message;
+      });
+  }
 
-class Dashboard extends Component{
-    super(props){
-        this.state={
+  render() {
+    let key;
+    var data;
+    let arr = this.state.noteArray.map(notes => {
+      return (
+        <Getnote
+          title={notes.data().title}
+          description={notes.data().description}
+        />
+      );
+    });
 
-        }
-    }
-
-
-    render(){
-        return(
-            <div>
-                <p>><h1>Hi Well Com to hellll...!!!!!!</h1></p>
-
-<DrawerNav/>
-<appBar/>
-            </div>
-
-)
-    }
+    return (
+      <div>
+        <Navigation />
+        <div className="get">{arr}</div>
+      </div>
+    );
+  }
 }
 
-
-export default  withRouter(Dashboard)
+export default withRouter(Dashboard);

@@ -8,7 +8,11 @@ import Firebase from "../firebaseConfig";
 import { EventEmitter } from "events";
 import jwt_decode from "jwt-decode";
 const db = Firebase.firestore();
-//User Registraction firebase
+/**
+ *
+ * @param {user} user
+ * @function : regid
+ */
 export async function registeration(user) {
   try {
     const data = {
@@ -72,6 +76,7 @@ export async function Signout() {
   await firebase.auth().firebaseAuthorization.signOut();
   localStorage.removeItem("usertoken");
 }
+
 export async function saveNote(data) {
   try {
     const token = localStorage.usertoken;
@@ -90,5 +95,28 @@ export async function saveNote(data) {
   } catch (error) {
     console.log(error);
     return error;
+  }
+}
+
+export async function getNote() {
+  try {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    var noteData = [];
+    await db
+      .collection("notes")
+      .where("user_id", "==", decoded.user_id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          noteData.push(doc);
+        });
+      });
+    console.log(noteData);
+
+    return noteData;
+  } catch (error) {
+    console.log(error);
+    return error.message;
   }
 }

@@ -1,46 +1,79 @@
 .Menu_Button {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   min-width: 250px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: -10em;
+}
+@media (max-width: 1900px) {
+  .appicons {
+    display: flex;
+    margin-left: 10em;
+    margin-left: 7em;
+  }
+}
+.cart {
+  display: flex;
+  margin-left: 30px;
+}
+.view {
+  display: flex;
+  margin-left: 30px;
+}
+
+@media screen and (min-width: 992px) {
+  .Search_Base {
+    margin-left: 25px;
+  }
+}
+@media screen and (min-width: 700px) {
+  .Search_Base {
+    margin-left: 25px;
+  }
 }
 .Search_Base {
   display: flex;
   align-items: center;
-  width: 40em;
+  width: 25em;
   height: 43px;
   border: 0px;
   border-radius: 5px;
   background-color: #d3d3d345;
-  margin-left: 100px;
+  margin-left: 50px;
+}
+.searchicon {
+  display: flex;
+  margin-left: 20px;
 }
 .Search_Base:hover {
-  background-color: white;
+  background-color: rgba(252, 252, 252, 0.979);
   box-shadow: 10px;
 }
-.searchingbar {
+
+/* .searchingbar {
   display: flex;
   justify-content: center;
-  width: 52em;
+  width: 37em;
   border-color: grey;
-}
+} */
 
+/* .parent_search {
+  display: flex;
+  justify-content: space-between;
+  width: 40em;
+} */
 .icons {
   display: flex;
   /* justify-content: space-around; */
   align-items: center;
   margin-left: 100px;
 }
-@media screen and (min-width: 480px) {
-  .icons {
-    min-width: 900px;
-  }
-}
-.parent_search {
-  display: flex;
-  justify-content: space-between;
-  width: 65em;
-}
+
 .cross {
   margin-left: -35px;
 }
@@ -90,8 +123,11 @@
 .Archive:hover {
   background-color: rgb(233, 233, 10);
 }
+
 .name {
   color: green;
+  display: flex;
+  margin-left: 5em;
 }
 .pro {
   display: flexbox;
@@ -100,26 +136,33 @@
   border-radius: 400px;
 }
 /* createNotes CSS */
+
 .card {
   width: 25em;
-  margin-top: 8%;
+  margin-top: 250px;
   align-items: center;
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 15px;
 }
-.create_notes1 {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+@media screen and (min-width: 120px) {
+  .create_notes1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 80px;
+    margin-left: -10em;
+  }
 }
-.checkbox {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 35em;
-  margin-top: -40px;
-  border-radius: 400px;
+@media screen and (min-width: 120px) {
+  .checkbox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 35em;
+    margin-top: -40px;
+    border-radius: 400px;
+  }
 }
 .draw {
   width: 41em;
@@ -138,21 +181,40 @@
   margin-top: -21px;
   cursor: pointer;
 }
+
 .card1 {
-  width: 25em;
-  height: 27vh;
-  margin-top: 6%;
+  width: 16em;
+  height: 18vh;
   align-items: center;
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 15px;
-  margin-left: 21em;
 }
 
 .icons2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-top: 15px;
+  margin-top: -13px;
   cursor: pointer;
+  padding: 15px;
+}
+/* 
+dashBoard CSS */
+.get {
+  margin-left: 10em;
+  align-items: center;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.getnoteicons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 15px;
 }
