@@ -114,8 +114,10 @@ class Login extends Component {
         } else {
           if (data === "success") {
             this.setState({
+              // snackbarOpen: true,
+              // snackbarMsg: "Sign In SucessFull "
               snackbarOpen: true,
-              snackbarMsg: "Sign In SucessFull "
+              snackbarMsg: " Email cannot be empty"
             });
           }
           //Setting a time out for responsing an a page 4 sec
