@@ -184,11 +184,12 @@
 
 .card1 {
   width: 16em;
-  height: 18vh;
+  height: 27vh;
   align-items: center;
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 15px;
+  margin-top: 30px;
 }
 
 .icons2 {
@@ -198,10 +199,19 @@
   margin-top: -13px;
   cursor: pointer;
   padding: 15px;
+  margin-left: -18px
 }
 /* 
 dashBoard CSS */
-.get {
+.getnoteicons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: -20px;
+  cursor: pointer;
+  padding: 15px;
+}
+.all{
   margin-left: 10em;
   align-items: center;
   height: 20vh;
@@ -210,11 +220,31 @@ dashBoard CSS */
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.getnoteicons {
+.dialogCard{
+  width: 20em;
+    height: 15vh;
+    align-items: center;
+    font-size: 20px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    padding: 20px;
+    margin-top: -11px;
+}
+.dialogIcon{
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin-top: 10px;
   cursor: pointer;
   padding: 15px;
+  width: 20em;
+}
+.editcard{
+  margin-top: -27px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+.dialog{
+  margin-top: 22px;
+  width: 70em;
+  align-content: center;
 }

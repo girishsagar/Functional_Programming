@@ -21,12 +21,8 @@ export async function registeration(user) {
       Email: user.Email,
       password: user.password
     };
-    await firebase
-      .auth()
-      .createUserWithEmailAndPassword(user.Email, data.password);
-    db.collection("user")
-      .doc(firebase.auth().currentUser.uid)
-      .set(data);
+    await firebase.auth().createUserWithEmailAndPassword(user.Email, data.password);
+    db.collection("user").doc(firebase.auth().currentUser.uid).set(data);
     //passing an evnt emitter
     const emitter = new EventEmitter();
     function EmailVerification() {
@@ -103,10 +99,7 @@ export async function getNote() {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     var noteData = [];
-    await db
-      .collection("notes")
-      .where("user_id", "==", decoded.user_id)
-      .get()
+    await db.collection("notes").where("user_id", "==", decoded.user_id).get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           noteData.push(doc);
@@ -119,4 +112,23 @@ export async function getNote() {
     console.log(error);
     return error.message;
   }
+}
+
+
+export async function editNote(noteData) {
+  await db.collection("notes").doc(noteData.noteId).update({
+      // await db.collection("notes").doc().update({
+      "title": noteData.title,
+      "description": noteData.description,
+  })
+  // console.log("bkshksbkjb")
+      .then(res => {
+          res = true;
+          return res
+      })
+      .catch(error => {
+          console.log(error.message)
+          return error.message
+      })
+
 }

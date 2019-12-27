@@ -11,6 +11,7 @@ import dropDown from "./components/dropDown";
 import note from "./components/note";
 import dashBoard from "./components/dashBoard";
 import getnote from "./components/getNote";
+import editNote from "./components/editNote"
 class App extends Component {
   render() {
     return (
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/note" component={note}></Route>
           <Route path="/getnote" component={getnote}></Route>
           <Route path="/dashBoard" component={dashBoard}></Route>
+          <Route path="/editNote" component={editNote}></Route>
         </Switch>
       </Router>
     );
