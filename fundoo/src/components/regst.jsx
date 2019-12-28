@@ -118,7 +118,7 @@ class registration extends Component {
       Email: Email
     });
     if (
-      Email == !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
+      Email === !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
     ) {
       this.setState({
         snackbarOpen: true,
@@ -201,7 +201,7 @@ class registration extends Component {
                 <AccountCircleRoundedIcon />
               </Avatar>
             </div>
-            <div className="loge">SignUp</div>
+            <div className="loge">Sign Up</div>
             <TextField
               required
               autoComplete="password"

@@ -11,7 +11,6 @@ import ViewComfySharpIcon from "@material-ui/icons/ViewComfySharp";
 import DrawerNav from "./drawerNavigation";
 import Dropdown from "./dropDown";
 import Avatar from "@material-ui/core/Avatar";
-import Notes from "./note";
 const thm = createMuiTheme({
   overrides: {
     MuiAppBar: {
@@ -74,7 +73,7 @@ class Navigation extends Component {
     return (
       <div className="nav">
         <MuiThemeProvider theme={thm}>
-          <AppBar position="fixed">
+          <AppBar >
             <Toolbar>
               <div className="Menu_Button">
                 <div>
@@ -83,9 +82,12 @@ class Navigation extends Component {
                   </IconButton>
                 </div>
               </div>
-              <div className="logo">
+
+              <div >
+                <div className="logo">
                 <div>FundooImage</div>
                 <div>Keep</div>
+                </div>
               </div>
               {/* <div className="parent_search">
                 <div className="searchingbar"> */}
@@ -128,9 +130,7 @@ class Navigation extends Component {
             anchorEl={this.state.anchorEl}
             closeMenu={this.handleClose}
           />
-          <div>
-            <Notes />
-          </div>
+     
           {/* {arr} */}
         </MuiThemeProvider>
       </div>

@@ -8,15 +8,26 @@ import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
-import { editNote, getNote } from "../controller/userController";
+import { editNote, getNote,pinNotes } from "../controller/userController";
 import Dialog from "@material-ui/core/Dialog";
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
       root: {
         borderRadius: "16px",
-        marginTop:"35px",
-        width:"20em"
+        marginTop: "35px",
+        width: "20em"
+      }
+    },
+    MuiCard: {
+      root: {
+        176: {
+          // borderRadius: "16px",
+          // marginTop:"35px",
+          // width:"20em",
+          marginLeft: "-30em"
+        }
       }
     }
   }
@@ -29,7 +40,8 @@ class Getnote extends Component {
       open: false,
       noteId: "",
       title: "",
-      description: ""
+      description: "",
+      isPinned:false,
     };
   }
   // snackbarClose = e => {
@@ -42,10 +54,10 @@ class Getnote extends Component {
     getNote()
       .then(res => {
         this.setState({
-          // notes: res.noteData.noteData.noteData
+          // / notes: res.noteData.noteData.noteData
           notes: res
         });
-        // console.log("res in notesData", this.state.notes);
+        console.log("res in notesData", this.state.notes);
       })
       .catch(err => {
         console.log("err", err);
@@ -90,43 +102,89 @@ class Getnote extends Component {
       description: description
     });
   };
+  componentWillReceiveProps(nextProps){
+    console.log("nextProps",nextProps);
+    if(nextProps.getNotes){
+      this.handleGetNotes()
+    }
+  }
+  handlePin(noteId){
+    this.setState({
+      isPinned:!this.state.isPinned
+    })
+    let data={
+      noteId:noteId,
+      isPinned:this.state.isPinned
+    }
+    console.log("data in pin notres",data)
+    pinNotes(data).then(res => {
+      console.log("result of  pinnote", res);
+      this.handleGetNotes();
+    })
+    .catch(err => {
+      console.log("err in pinnote component ", err);
+    });
+  }
   render() {
     return (
-      <div>
+      <div className="_notes">
         {!this.state.open ? (
-          <div className="all">
+          <div className="_notes_">
             {this.state.notes.map(key => {
+              console.log("data",key.data().isPinned)
               return (
-                <div>
-                  <Card className="card1">
-                    <div>{key.data().title}</div>
-                    <div>{key.data().description}</div>
-                    <div onClick={this.handleOpenDialogue}>
-                      <InputBase
-                        value={key.data().title}
-                        // value={key.data().description}
-                        multiline
-                        onClick={() =>
-                          this.handleEditNote(
-                            key.id,
-                            key.data().title,
-                            key.data().description
-                          )
-                        }
-                      />
-                    </div>
-                    <div onClick={this.handleOpenDialogue}>
-                      <InputBase
-                        value={key.description}
-                        multiline
-                        onClick={() =>
-                          this.handleEditNote(
-                            key.id,
-                            key.data().title,
-                            key.data().description
-                          )
-                        }
-                      />
+                <div className="notes_">
+                  <Card
+                    className="get_Nottes_card"
+                    style={{
+                      width: "220px",
+                      minHeight: "100px",
+                      height: "auto",
+                      margin: "5px",
+                      padding: "10px",
+                      boxShadow: "0px 1px 7px 0px",
+                      marginTop: "10%"
+                    }}
+                  >
+                    
+                    <div >
+                      {key.data().title}
+                      <RoomOutlinedIcon onClick={()=>this.handlePin( key.id)}/>
+                      </div>
+                    <div >
+                      {key.data().description}
+                      </div>
+
+                    {/* <InputBase multiline value={key.data().title} onClick={()=>this.handleOpenDialogue(key.id)} />
+                    <InputBase multiline value={key.data().description} onClick={this.handleOpenDialogue}/> */}
+
+                    <div onClick={this.handleOpenDialogue}  >
+                      <div className="base">
+                        <InputBase
+                          multiline
+                          onClick={() =>
+                            this.handleEditNote(
+                              key.id,
+                              key.data().title,
+                              key.data().description
+                            )
+                          }
+                        />
+
+                        <div onClick={this.handleOpenDialogue} >
+                          <InputBase
+                            value={key.description}
+                            multiline
+                            onClick={() =>
+                              this.handleEditNote(
+                                key.id,
+                                key.data().title,
+                                key.data().description
+                              )
+                            }
+                          />
+                        </div>
+                      </div>
                     </div>
                     <div className="getnoteicons">
                       <div>
@@ -167,30 +225,30 @@ class Getnote extends Component {
           </div>
         ) : (
           <div className="cd">
-            <Dialog className="dialog"
+            <Dialog
+              // className="dialog"
               open={this.state.open}
-              onClose={this.handleOpenDialogue}
+               onClose={this.handleOpenDialogue}
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-               <MuiThemeProvider theme={thm}>
+              {/* <MuiThemeProvider theme={thm}> */}
               <Card className="dialogCard">
-              <div className="editcard"> 
-                <div>
+                <div className="editcard">
+                  <div>
                     <InputBase
-                      //placeholder="Title"
+                      placeholder="Title"
                       value={this.state.title}
-                      onChange={this.handleTitle}
+                       onChange={this.handleTitle}
                     />
-                
-                </div>
-                <div className="inputNote">
-                  <InputBase
-                    // placeholder="Take a note..."
-                    value={this.state.description}
-                    onChange={this.handleDescription}
-                  />
-                </div>
+                  </div>
+                  <div className="inputNote">
+                    <InputBase
+                      placeholder="Take a note..."
+                      value={this.state.description}
+                      onChange={this.handleDescription}
+                    />
+                  </div>
                 </div>
                 <div className="imageAndClose">
                   <div className="dialogIcon">
@@ -212,7 +270,8 @@ class Getnote extends Component {
                     <div>
                       <MoreVertOutlinedIcon />
                     </div>
-                    <Button className="button"
+                    <Button
+                      className="button"
                       color="Primary"
                       onClick={this.handleEditNote}
                       style={{ cursor: "pointer" }}
@@ -222,8 +281,7 @@ class Getnote extends Component {
                   </div>
                 </div>
               </Card>
-              </MuiThemeProvider>
-
+              {/* </MuiThemeProvider> */}
             </Dialog>
           </div>
         )}

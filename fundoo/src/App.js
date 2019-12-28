@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/login";
+import login from "./components/login";
 import "./App.css";
 import "./navigation.css";
 import appBar from "./components/appBar";
@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/login" component={Login}></Route>
+          <Route path="/login" component={login}></Route>
           <Route path="/register" component={regst}></Route>
           <Route path="/forget" component={forgetPassword}></Route>
           <Route path="/appBar" component={appBar}></Route>

@@ -2,18 +2,27 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Navigation from "./appBar";
 import Getnote from "./getNote";
+import Notes from "./note";
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      noteArray: []
+      noteArray: [],
+      getNotesProps:false,
     };
+  }
+  initiateGetNotes=(getDataProps)=>{
+    console.log("getDataProps",getDataProps);
+    this.setState({
+      getNotesProps:getDataProps
+    })
   }
   render() {
     return (
       <div>
         <Navigation />
-        <Getnote />
+        <Notes initiateGetNotes={this.initiateGetNotes}/>
+        <Getnote getNotes={this.state.getNotesProps}/>
       </div>
     );
   }

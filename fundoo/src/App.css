@@ -4,11 +4,10 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-display: bold;
   padding: 10px;
-  margin-left: 30px;
+  display: flex;
 }
 .loginpage {
   width: 100%;
-  height: 100vh;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -16,15 +15,19 @@
   font-display: bold;
   backface-visibility: inherit;
   font-size: 25px;
+  margin-top: 10%;
 }
 .login-card {
   width: 350px;
-  height: 70vh;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
   padding: 40px;
+}
+.avatar {
+  display: flex;
+  justify-content: center;
 }
 /* registerPage css */
 
@@ -40,8 +43,8 @@
 }
 .sign-card {
   width: 400px;
-  height: 60vh;
-  margin-top: 25px;
+  /* height: 60vh;
+  margin-top: 25px; */
   flex-direction: column;
   text-align: center;
   justify-content: center;
@@ -52,11 +55,11 @@
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-.loged {
+/* .loged {
   border-radius: 25px;
   width: 320px;
   padding: 80px;
-}
+} */
 .loginbutton {
   align-content: center;
   align-items: flex;
@@ -88,7 +91,7 @@
   grid-auto-flow: inherit;
 }
 /* reset button css property */
-.resetbutton{
+.resetbutton {
   align-content: center;
   align-items: flex;
   margin-top: 20px;
@@ -103,14 +106,13 @@
 .resetbutton span {
   cursor: pointer;
   display: inline-block;
-
   transition: 0.5s;
 }
 
 .resetbutton span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: relative;
-  opacity: 0; 
+  opacity: 0;
   top: 0;
   right: -20px;
   transition: 0.5s;
@@ -121,13 +123,10 @@
 }
 
 .resetbutton:hover span:after {
-  opacity: 1;
-  right: 0;
+  opacity: 1px;
+  right: -1px;
 }
 .forgot-card {
-  width: 300px;
-  height: 50vh;
-  margin-top: 25px;
   flex-direction: column;
   text-align: center;
   justify-content: center;

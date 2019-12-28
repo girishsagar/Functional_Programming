@@ -132,3 +132,34 @@ export async function editNote(noteData) {
       })
 
 }
+
+export async function pinNotes(noteData) {
+  if(noteData.isPinned){
+  await db.collection("notes").doc(noteData.noteId).update({
+      // await db.collection("notes").doc().update({
+      "isPinned": noteData.isPinned,
+  }).then(res => {
+    console.log("res",res);
+    
+          res = true;
+          return res
+      })
+      .catch(error => {
+          console.log(error.message)
+          return error.message
+      })
+    }else{
+      await db.collection("notes").doc(noteData.noteId).update({
+        // await db.collection("notes").doc().update({
+        "isPinned": noteData.isPinned,
+    }).then(res => {
+            res = true;
+            return res
+        })
+        .catch(error => {
+            console.log(error.message)
+            return error.message
+        })
+    }
+
+}

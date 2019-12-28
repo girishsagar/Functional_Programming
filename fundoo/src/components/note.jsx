@@ -20,7 +20,7 @@ import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
 import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
-import { saveNote } from "../controller/userController";
+import { saveNote,getNote } from "../controller/userController";
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -46,6 +46,22 @@ class Notes extends Component {
       snackbarMsg: ""
     };
   }
+  componentDidMount() {
+    this.handleGetNotes();
+  }
+  handleGetNotes = () => {
+    getNote()
+      .then(res => {
+        this.setState({
+          // / notes: res.noteData.noteData.noteData
+          notes: res
+        });
+        console.log("res in notesData", this.state.notes);
+      })
+      .catch(err => {
+        console.log("err", err);
+      });
+  };
   snackbarClose = e => {
     this.setState({ snackbarOpen: false });
   };
@@ -60,6 +76,7 @@ class Notes extends Component {
   };
 
   newNote = () => {
+    this.props.initiateGetNotes(true)
     try {
       if (this.state.title === "" && this.state.description === "") {
         this.setState({ cardOpen: false });
@@ -88,59 +105,52 @@ class Notes extends Component {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
+  handleOpen=()=>{
+    this.setState({
+      cardOpen: true
+    })
+  }
   render() {
-    return !this.state.cardOpen ? (
-      <div className="create_notes1">
-        <MuiThemeProvider theme={thm}>
-          <Card className="card">
-            <div>
-              <InputBase
-                multiline
-                placeholder="Take a note...."
-                onClick={this.openCard}
-              />
-            </div>
-            <div className="edited" onClick={this.openCard}>
-              <div className="checkbox">
-                <Tooltip title="new label">
-                  <CheckBoxOutlinedIcon />
-                </Tooltip>
-              </div>
+    return  !this.state.cardOpen ? (
 
-              <div className="draw">
-                <Tooltip title="New note with drawing">
-                  <CreateOutlinedIcon />
-                </Tooltip>
-              </div>
-
-              <div className="imageicon">
-                <ImageOutlinedIcon />
-              </div>
-            </div>
-          </Card>
-        </MuiThemeProvider>
-        <Snackbar
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
-            color: "white"
-          }}
-          open={this.state.snackbarOpen}
-          autoHideDuration={2000}
-          onClose={this.snackbarClose}
-          message={<span id="message-id">{this.state.snackbarMsg}</span>}
-          action={[
-            <IconButton onClick={this.handleClose}>
-              <CloseIcon onClick={this.snackbarClose} />
-            </IconButton>
-          ]}
-        />
+      <div style={{display:"flex", justifyContent:"center", width:"82em", marginTop:"100px"}} onClick={this.handleOpen}>
+        <Card className="create" style={{width:"32em", padding:"18px", height:"25px", }} >
+<div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+<div>
+  <InputBase
+  placeholder="Take a note..."/>
+</div>
+<div style={{display:"flex", justifyContent:"space-between", width:"10em"}}>
+  <div><CheckBoxOutlinedIcon/></div>
+  <div><ImageOutlinedIcon/></div>
+  <div><CreateOutlinedIcon/></div>
+</div>
+</div>
+        </Card>
       </div>
+  
+        // <Snackbar
+        //   anchorOrigin={{
+        //     vertical: "bottom",
+        //     horizontal: "center",
+        //     color: "white"
+        //   }}
+        //   open={this.state.snackbarOpen}
+        //   autoHideDuration={2000}
+        //   onClose={this.snackbarClose}
+        //   message={<span id="message-id">{this.state.snackbarMsg}</span>}
+        //   action={[
+        //     <IconButton onClick={this.handleClose}>
+        //       <CloseIcon onClick={this.snackbarClose} />
+        //     </IconButton>
+        //   ]}
+        // />
+      // </div>
     ) : (
-      <div>
-        <MuiThemeProvider theme={thm}>
-          <Card className="card1">
+      <div style={{marginTop:"125px",width:"82em",display:"flex", justifyContent:"center" }}>
+        {/* <MuiThemeProvider theme={thm}> */}
+          <Card className="card1" >
             <div>
               <InputBase
                 multiline
@@ -206,7 +216,7 @@ class Notes extends Component {
               </div>
             </div>
           </Card>
-        </MuiThemeProvider>
+        {/* </MuiThemeProvider> */}
       </div>
     );
   }

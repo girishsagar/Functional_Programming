@@ -19,7 +19,6 @@ const thm = createMuiTheme({
   overrides: {
     MuiAvatar: {
       root: {
-        left: "155px",
         width: "60px",
         height: "60px"
       },
@@ -46,21 +45,18 @@ class Login extends Component {
     this.state = {
       Email: "",
       password: "",
-      openSnackBar: false,
-      SnackbarMsg: ""
+      // openSnackBar: false,
+      // SnackbarMsg: ""
+      snackbarOpen: false,
+      snackbarMsg: ""
     };
   }
-  /**
-   * @function :snackbarClose
-   * @description :it will check from snackbar messaga
-   */
+  // snackbarClose = e => {
+  //   this.setState({ snackbarOpen: false });
+  // };
   snackbarClose = e => {
-    this.setState({ snackbarOpen: false });
+    this.setState({snackbarOpen: false});
   };
-  /**
-   * @function : onRegister
-   * @description :it i'll naviagate to the registraction page
-   */
   onRegister = () => {
     this.props.history.push("/register");
   };
@@ -68,11 +64,25 @@ class Login extends Component {
     this.props.history.push("/forget");
   };
 
+  // handleEmail = event => {
+  //   let Email = event.target.value;
+  //   this.setState({
+  //     Email: Email
+  //   });
+  // };
   handleEmail = event => {
     let Email = event.target.value;
     this.setState({
       Email: Email
     });
+    if (
+      Email == !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.Email)
+    ) {
+      this.setState({
+        snackbarOpen: true,
+        snackbarMsg: "Give valid Email-id..!"
+      });
+    }
   };
   handlepassword = event => {
     let password = event.target.value;
@@ -114,17 +124,15 @@ class Login extends Component {
         } else {
           if (data === "success") {
             this.setState({
-              // snackbarOpen: true,
-              // snackbarMsg: "Sign In SucessFull "
               snackbarOpen: true,
-              snackbarMsg: " Email cannot be empty"
+              snackbarMsg: "Sign In SucessFull "
             });
           }
           //Setting a time out for responsing an a page 4 sec
-          setTimeout(() => {
+          // setTimeout(() => {
             this.props.history.push("/dashBoard");
             // this.props.histroy.push(/dashBoard);
-          }, 2000);
+          // }, 2000);
         }
       });
     }
@@ -144,14 +152,15 @@ class Login extends Component {
 
             <div className="input-field">
               <TextField
-                required
-                id="Email"
+                // id="Email"
                 name="Email"
                 label="Email"
                 variant="standard"
                 autoFocus
                 fullWidth
+                required
                 onChange={event => this.handleEmail(event)}
+                //  onChange={event => this.setState.handleEmail(event.target.value)}
               />
               <div>
                 <TextField
@@ -194,13 +203,29 @@ class Login extends Component {
           </MuiThemeProvider>
         </Card>
 
-        <Snackbar
+        {/* <Snackbar
           anchorOrigin={{
             vertical: "bottom",
             horizontal: "center"
           }}
           open={this.state.snackbarOpen}
           autoHideDuration={2000}
+          onClose={this.snackbarClose}
+          message={<span id="message-id">{this.state.snackbarMsg}</span>}
+          action={[
+            <IconButton onClick={this.handleClose}>
+              <CloseIcon onClick={this.snackbarClose} />
+            </IconButton>
+          ]}
+        /> */}
+
+<Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center"
+          }}
+          open={this.state.snackbarOpen}
+          autoHideDuration={5000}
           onClose={this.snackbarClose}
           message={<span id="message-id">{this.state.snackbarMsg}</span>}
           action={[
