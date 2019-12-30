@@ -39,9 +39,7 @@ export async function registeration(user) {
 //userlogin firebase
 export async function userlogin(user, cb) {
   try {
-    let userlogin = await firebase
-      .auth()
-      .signInWithEmailAndPassword(user.Email, user.password);
+    let userlogin = await firebase.auth().signInWithEmailAndPassword(user.Email, user.password);
     const payload = {
       user_id: userlogin.user.uid,
       email: userlogin.user.email
@@ -68,6 +66,7 @@ export async function forgotPassword(Email) {
     return error.message;
   }
 }
+
 export async function Signout() {
   await firebase.auth().firebaseAuthorization.signOut();
   localStorage.removeItem("usertoken");
@@ -83,9 +82,7 @@ export async function saveNote(data) {
       description: data.description,
       user_id: decoded.user_id
     };
-    db.collection("notes")
-      .doc()
-      .set(noteData);
+    db.collection("notes").doc().set(noteData);
     let result = true;
     return result;
   } catch (error) {
@@ -114,7 +111,7 @@ export async function getNote() {
   }
 }
 
-
+// editNote and updata in firebase 
 export async function editNote(noteData) {
   await db.collection("notes").doc(noteData.noteId).update({
       // await db.collection("notes").doc().update({
@@ -150,6 +147,7 @@ export async function pinNotes(noteData) {
       })
     }else{
       await db.collection("notes").doc(noteData.noteId).update({
+ 
         // await db.collection("notes").doc().update({
         "isPinned": noteData.isPinned,
     }).then(res => {

@@ -21,6 +21,7 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
 import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
 import { saveNote,getNote } from "../controller/userController";
+
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -42,6 +43,8 @@ class Notes extends Component {
       cardColor: "",
       title: "",
       description: "",
+      isPinned:false,
+      pin_open:false,
       snackbarOpen: false,
       snackbarMsg: ""
     };
@@ -74,7 +77,9 @@ class Notes extends Component {
   changeDescription = e => {
     this.setState({ description: e.currentTarget.value });
   };
-
+handleOpenPin=()=>{
+  this.setState({pin_open:true}) 
+}
   newNote = () => {
     this.props.initiateGetNotes(true)
     try {
@@ -88,7 +93,7 @@ class Notes extends Component {
         saveNote(noteData).then(res => {
           if (res === true) {
             this.setState({
-              snackbarMsg: " Saved",
+              snackbarMsg: " New Note Saved",
               snackbarOpen: true,
               title: "",
               description: "",
@@ -114,8 +119,10 @@ class Notes extends Component {
   render() {
     return  !this.state.cardOpen ? (
 
-      <div style={{display:"flex", justifyContent:"center", width:"82em", marginTop:"100px"}} onClick={this.handleOpen}>
+      <div style={{display:"flex", justifyContent:"center", width:"82em", marginTop:"100px"}} 
+      onClick={this.handleOpen}>
         <Card className="create" style={{width:"32em", padding:"18px", height:"25px", }} >
+         
 <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
 <div>
   <InputBase
@@ -128,35 +135,51 @@ class Notes extends Component {
 </div>
 </div>
         </Card>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "center",
+            color: "white"
+          }}
+          open={this.state.snackbarOpen}
+          autoHideDuration={2000}
+          onClose={this.snackbarClose}
+          message={<span id="message-id">{this.state.snackbarMsg}</span>}
+          action={[
+            <IconButton onClick={this.handleClose}>
+              <CloseIcon onClick={this.snackbarClose} />
+            </IconButton>
+          ]}
+        />
       </div>
   
-        // <Snackbar
-        //   anchorOrigin={{
-        //     vertical: "bottom",
-        //     horizontal: "center",
-        //     color: "white"
-        //   }}
-        //   open={this.state.snackbarOpen}
-        //   autoHideDuration={2000}
-        //   onClose={this.snackbarClose}
-        //   message={<span id="message-id">{this.state.snackbarMsg}</span>}
-        //   action={[
-        //     <IconButton onClick={this.handleClose}>
-        //       <CloseIcon onClick={this.snackbarClose} />
-        //     </IconButton>
-        //   ]}
-        // />
-      // </div>
+  
     ) : (
       <div style={{marginTop:"125px",width:"82em",display:"flex", justifyContent:"center" }}>
         {/* <MuiThemeProvider theme={thm}> */}
           <Card className="card1" >
+          {!this.state.open ? ( 
+          <div style={{width:"30em", display:"flex", justifyContent:"flex-end"}}>  
+              
+<img src={require('../assets/unpin.png')} style={{width:"25px"}} onClick={this.handleOpenPin}/>    
+
+</div>
+):(
+<div style={{width:"30em", display:"flex", justifyContent:"flex-end"}}>
+  <img src={require('../assets/pin.png')} style={{width:"25px"}}/>
+
+    
+</div>
+  )}
+        
             <div>
               <InputBase
                 multiline
                 placeholder="Ttitle"
                 onChange={this.changeTitle}
                 value={this.state.title}
+
               />
             </div>
             <div>

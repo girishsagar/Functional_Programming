@@ -91,6 +91,7 @@ class Navigation extends Component {
               </div>
               {/* <div className="parent_search">
                 <div className="searchingbar"> */}
+            <div className="search_main_div">
               <div className="Search_Base">
                 <div className="searchicon">
                   <SearchIcon />
@@ -113,11 +114,10 @@ class Navigation extends Component {
                   <ViewComfySharpIcon />
                 </div>
               </div>
-
+</div>
               <div className="profile-Icon">
                 <div className="name">
                   {/* <AccountCircleSharpIcon /> */}
-
                   <Avatar onClick={this.menuItem} aria-owns="simple-menu">
                     G{" "}
                   </Avatar>

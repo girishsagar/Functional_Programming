@@ -8,9 +8,10 @@ import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
-import { editNote, getNote,pinNotes } from "../controller/userController";
+import { editNote, getNote, pinNotes } from "../controller/userController";
 import Dialog from "@material-ui/core/Dialog";
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import pin from "../assets/pin.png"
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -41,12 +42,12 @@ class Getnote extends Component {
       noteId: "",
       title: "",
       description: "",
-      isPinned:false,
+      isPinned: false,
     };
   }
-  // snackbarClose = e => {
-  //   this.setState({ snackbarOpen: false });
-  // };
+  snackbarClose = e => {
+    this.setState({ snackbarOpen: false });
+  };
   componentDidMount() {
     this.handleGetNotes();
   }
@@ -102,28 +103,28 @@ class Getnote extends Component {
       description: description
     });
   };
-  componentWillReceiveProps(nextProps){
-    console.log("nextProps",nextProps);
-    if(nextProps.getNotes){
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    if (nextProps.getNotes) {
       this.handleGetNotes()
     }
   }
-  handlePin(noteId){
+  handlePin(noteId) {
     this.setState({
-      isPinned:!this.state.isPinned
+      isPinned: !this.state.isPinned
     })
-    let data={
-      noteId:noteId,
-      isPinned:this.state.isPinned
+    let data = {
+      noteId: noteId,
+      isPinned: this.state.isPinned
     }
-    console.log("data in pin notres",data)
+    console.log("data in pin notres", data)
     pinNotes(data).then(res => {
       console.log("result of  pinnote", res);
       this.handleGetNotes();
     })
-    .catch(err => {
-      console.log("err in pinnote component ", err);
-    });
+      .catch(err => {
+        console.log("err in pinnote component ", err);
+      });
   }
   render() {
     return (
@@ -131,7 +132,7 @@ class Getnote extends Component {
         {!this.state.open ? (
           <div className="_notes_">
             {this.state.notes.map(key => {
-              console.log("data",key.data().isPinned)
+              console.log("data", key.data().isPinned)
               return (
                 <div className="notes_">
                   <Card
@@ -146,14 +147,14 @@ class Getnote extends Component {
                       marginTop: "10%"
                     }}
                   >
-                    
+
                     <div >
                       {key.data().title}
-                      <RoomOutlinedIcon onClick={()=>this.handlePin( key.id)}/>
-                      </div>
+                      <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} />
+                    </div>
                     <div >
                       {key.data().description}
-                      </div>
+                    </div>
 
                     {/* <InputBase multiline value={key.data().title} onClick={()=>this.handleOpenDialogue(key.id)} />
                     <InputBase multiline value={key.data().description} onClick={this.handleOpenDialogue}/> */}
@@ -224,67 +225,67 @@ class Getnote extends Component {
             })}
           </div>
         ) : (
-          <div className="cd">
-            <Dialog
-              // className="dialog"
-              open={this.state.open}
-               onClose={this.handleOpenDialogue}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              {/* <MuiThemeProvider theme={thm}> */}
-              <Card className="dialogCard">
-                <div className="editcard">
-                  <div>
-                    <InputBase
-                      placeholder="Title"
-                      value={this.state.title}
-                       onChange={this.handleTitle}
-                    />
+            <div className="cd">
+              <Dialog
+                // className="dialog"
+                open={this.state.open}
+                onClose={this.handleOpenDialogue}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                {/* <MuiThemeProvider theme={thm}> */}
+                <Card className="dialogCard">
+                  <div className="editcard">
+                    <div>
+                      <InputBase
+                        placeholder="Title"
+                        value={this.state.title}
+                        onChange={this.handleTitle}
+                      />
+                    </div>
+                    <div className="inputNote">
+                      <InputBase
+                        placeholder="Take a note..."
+                        value={this.state.description}
+                        onChange={this.handleDescription}
+                      />
+                    </div>
                   </div>
-                  <div className="inputNote">
-                    <InputBase
-                      placeholder="Take a note..."
-                      value={this.state.description}
-                      onChange={this.handleDescription}
-                    />
-                  </div>
-                </div>
-                <div className="imageAndClose">
-                  <div className="dialogIcon">
-                    <div>
-                      <AddAlertOutlinedIcon />
-                    </div>
-                    <div>
-                      <PersonAddOutlinedIcon />
-                    </div>
-                    <div>
-                      <ColorLensOutlinedIcon />
-                    </div>
-                    <div>
-                      <ImageOutlinedIcon />
-                    </div>
-                    <div>
-                      <ArchiveOutlinedIcon />
-                    </div>
-                    <div>
-                      <MoreVertOutlinedIcon />
-                    </div>
-                    <Button
-                      className="button"
-                      color="Primary"
-                      onClick={this.handleEditNote}
-                      style={{ cursor: "pointer" }}
-                    >
-                      Close
+                  <div className="imageAndClose">
+                    <div className="dialogIcon">
+                      <div>
+                        <AddAlertOutlinedIcon />
+                      </div>
+                      <div>
+                        <PersonAddOutlinedIcon />
+                      </div>
+                      <div>
+                        <ColorLensOutlinedIcon />
+                      </div>
+                      <div>
+                        <ImageOutlinedIcon />
+                      </div>
+                      <div>
+                        <ArchiveOutlinedIcon />
+                      </div>
+                      <div>
+                        <MoreVertOutlinedIcon />
+                      </div>
+                      <Button
+                        className="button"
+                        color="Primary"
+                        onClick={this.handleEditNote}
+                        style={{ cursor: "pointer" }}
+                      >
+                        Close
                     </Button>
+                    </div>
                   </div>
-                </div>
-              </Card>
-              {/* </MuiThemeProvider> */}
-            </Dialog>
-          </div>
-        )}
+                </Card>
+                {/* </MuiThemeProvider> */}
+              </Dialog>
+            </div>
+          )}
       </div>
     );
   }

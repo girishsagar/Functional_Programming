@@ -50,7 +50,10 @@
   background-color: rgba(252, 252, 252, 0.979);
   box-shadow: 10px;
 }
-
+.search_main_div{
+  display: flex;
+  justify-content: center;
+}
 /* .searchingbar {
   display: flex;
   justify-content: center;
