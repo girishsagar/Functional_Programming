@@ -80,6 +80,7 @@ export async function saveNote(data) {
     const noteData = {
       title: data.title,
       description: data.description,
+      isPinned:data.isPinned,
       user_id: decoded.user_id
     };
     db.collection("notes").doc().set(noteData);

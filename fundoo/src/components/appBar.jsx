@@ -75,49 +75,41 @@ class Navigation extends Component {
         <MuiThemeProvider theme={thm}>
           <AppBar >
             <Toolbar>
-              <div className="Menu_Button">
-                <div>
-                  <IconButton onClick={this.menuOpen}>
+              <div className="Menu_Button"  >
+                <div >
+                  <IconButton onClick={this.menuOpen} >
                     <MenuIcon />
                   </IconButton>
                 </div>
+                <div >
+                  <img src={require("../assets/keep.png")} className="keep_image"/>
+                </div>
+                <div>FUNDOO</div>
               </div>
+              <div className="search_main_div">
+                <div className="Search_Base">
+                  <div className="searchicon">
+                    <SearchIcon />
+                  </div>
+                  <div>
+                    <InputBase placeholder="Search…" />
+                  </div>
+                </div>
 
+                <div className="appicons">
+                  <div>
+                    <RefreshIcon />
+                  </div>
+                  <div>
+                    <ShoppingCartOutlinedIcon />
+                  </div>
+                  <div>
+                    <ViewComfySharpIcon />
+                  </div>
+                </div>
+              </div>
               <div >
-                <div className="logo">
-                <div>FundooImage</div>
-                <div>Keep</div>
-                </div>
-              </div>
-              {/* <div className="parent_search">
-                <div className="searchingbar"> */}
-            <div className="search_main_div">
-              <div className="Search_Base">
-                <div className="searchicon">
-                  <SearchIcon />
-                </div>
-                <div>
-                  <InputBase placeholder="Search…" />
-                </div>
-              </div>
-              {/* </div>
-                </div> */}
-
-              <div className="appicons">
-                <div>
-                  <RefreshIcon />
-                </div>
-                <div className="cart">
-                  <ShoppingCartOutlinedIcon />
-                </div>
-                <div className="view">
-                  <ViewComfySharpIcon />
-                </div>
-              </div>
-</div>
-              <div className="profile-Icon">
                 <div className="name">
-                  {/* <AccountCircleSharpIcon /> */}
                   <Avatar onClick={this.menuItem} aria-owns="simple-menu">
                     G{" "}
                   </Avatar>
@@ -128,10 +120,7 @@ class Navigation extends Component {
           <DrawerNav open={this.state.open} />
           <Dropdown
             anchorEl={this.state.anchorEl}
-            closeMenu={this.handleClose}
-          />
-     
-          {/* {arr} */}
+            closeMenu={this.handleClose} />
         </MuiThemeProvider>
       </div>
     );

@@ -1,48 +1,34 @@
-
-.nav{
+/* appBar CSS  */
+/* .nav{
   display: flex;
     position: relative;
     justify-content: space-evenly;
     align-items: center;
     margin-top: -35px;
-}
+} */
 .Menu_Button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-width: 250px;
+  min-width: 15em;
 }
-.logo {
+.appicons {
   display: flex;
+  justify-content: space-between;
+  width: 10em;
   align-items: center;
-  justify-content: space-evenly;
-  margin-left: -10em;
 }
-  .appicons {
-    display: flex;
-    margin-left: 10em;
-    margin-left: 7em;
-  }
-.cart {
-  display: flex;
-  margin-left: 30px;
+.keep_image{
+  width: 55px;
 }
-.view {
-  display: flex;
-  margin-left: 30px;
-}
-
 .Search_Base {
   display: flex;
   align-items: center;
-  width: 25em;
-  height: 43px;
-  border: 0px;
-  border-radius: 5px;
+  width: 40em;
+  border-radius: 27px;
   background-color: #d3d3d345;
-  margin-left: 50px;
 }
-.searchicon {
+.searchicon { 
   display: flex;
   margin-left: 20px;
 }
@@ -52,20 +38,9 @@
 }
 .search_main_div{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 62em;
 }
-/* .searchingbar {
-  display: flex;
-  justify-content: center;
-  width: 37em;
-  border-color: grey;
-} */
-
-/* .parent_search {
-  display: flex;
-  justify-content: space-between;
-  width: 40em;
-} */
 .icons {
   display: flex;
   /* justify-content: space-around; */
@@ -73,10 +48,8 @@
   margin-left: 100px;
 }
 
-.cross {
-  margin-left: -35px;
-}
-/* drawernavigation */
+
+  /* drawernavigation */
 .notes {
   display: flex;
   justify-content: space-around;
@@ -122,11 +95,12 @@
 .Archive:hover {
   background-color: rgb(233, 233, 10);
 }
-
+@media only screen and (min-width: 200px) {
 .name {
   color: green;
   display: flex;
-  margin-left: 5em;
+  justify-content: flex-end;
+}
 }
 .pro {
   display: flexbox;
@@ -143,15 +117,6 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   padding: 15px;
 }
-
-
-  /* .create_notes1 {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 80px;
-    margin-left: -10em;
-  } */
 
   .create_notes1{
     justify-content: space-between;
@@ -185,26 +150,12 @@
   margin-top: -21px;
   cursor: pointer;
 }
-
+@media only screen and (min-width: 100px) {
 .card1 {
-  /* /* width: 16em;
-  height: 27vh;
-  align-items: center;
-  font-size: 20px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  padding: 15px;
-  margin-top: 30px; */
-  /* width: 25em;
-    margin-top: 250px;
-    align-items: center;
-    font-size: 20px;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    padding: 15px; */
     width: 32em;
-    /* margin-right: 23em; */
     padding: 18px;
 }
-
+}
 .icons2 {
   display: flex;
   align-items: center;
@@ -274,3 +225,4 @@ dashBoard CSS */
   display: flex;
   justify-content: center;
 }
+/* -------------->Media Query for appBar<-------------------- */

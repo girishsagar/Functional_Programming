@@ -43,6 +43,7 @@ class Getnote extends Component {
       title: "",
       description: "",
       isPinned: false,
+      pin_open: false
     };
   }
   snackbarClose = e => {
@@ -126,7 +127,14 @@ class Getnote extends Component {
         console.log("err in pinnote component ", err);
       });
   }
+
   render() {
+    // let svg=  this.props.pin_open ? (
+
+    // <img src={require('../assets/unpin.png')} style={{width:"25px",}} onClick={this.handleOpenPin}/>
+    // ):(
+    // <img src={require('../assets/pin.png')} style={{width:"25px",}} onClick={this.handleClosePin} />
+    // )
     return (
       <div className="_notes">
         {!this.state.open ? (
@@ -134,7 +142,7 @@ class Getnote extends Component {
             {this.state.notes.map(key => {
               console.log("data", key.data().isPinned)
               return (
-                <div className="notes_">
+                <div className="notes_" >
                   <Card
                     className="get_Nottes_card"
                     style={{
@@ -147,13 +155,21 @@ class Getnote extends Component {
                       marginTop: "10%"
                     }}
                   >
+                    {/* {svg} */}
+                    <div style={{display:"flex",justifyContent:"space-between",padding:"5px"}}>
+                      <div>
+                        <div>
+                          {key.data().title}
+                          {/* <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} /> */}
+                        </div>
+                        <div >
+                          {key.data().description}
+                        </div>
+                      </div>
+                      <div>
+                        <img src={require('../assets/unpin.png')} style={{ width: "20px" }} onClick={() => this.handlePin(key.id)} />
 
-                    <div >
-                      {key.data().title}
-                      <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} />
-                    </div>
-                    <div >
-                      {key.data().description}
+                      </div>
                     </div>
 
                     {/* <InputBase multiline value={key.data().title} onClick={()=>this.handleOpenDialogue(key.id)} />

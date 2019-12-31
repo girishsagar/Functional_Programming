@@ -15,25 +15,14 @@ import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+
+import Slide from '@material-ui/core/Slide';
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
 import RedoTwoToneIcon from "@material-ui/icons/RedoTwoTone";
-import { saveNote,getNote } from "../controller/userController";
+import { saveNote, getNote, pinNotes } from "../controller/userController";
 
-const thm = createMuiTheme({
-  overrides: {
-    MuiCard: {
-      root: {
-        borderRadius: "16px",
-        alignitems: "center",
-        marginTop: "6em",
-        marginLeft: "20em"
-      }
-    }
-  }
-});
 class Notes extends Component {
   constructor(props) {
     super(props);
@@ -43,8 +32,8 @@ class Notes extends Component {
       cardColor: "",
       title: "",
       description: "",
-      isPinned:false,
-      pin_open:false,
+      isPinned: false,
+      // pin_open:false,
       snackbarOpen: false,
       snackbarMsg: ""
     };
@@ -68,6 +57,10 @@ class Notes extends Component {
   snackbarClose = e => {
     this.setState({ snackbarOpen: false });
   };
+
+ TransitionLeft=(props)=> {
+  return <Slide {...props} direction="left" />;
+}
   openCard = () => {
     this.setState({ cardOpen: true });
   };
@@ -77,9 +70,25 @@ class Notes extends Component {
   changeDescription = e => {
     this.setState({ description: e.currentTarget.value });
   };
-handleOpenPin=()=>{
-  this.setState({pin_open:true}) 
-}
+  handleOpenPin = (noteId) => {
+    this.setState({ isPinned: true })
+    let data = {
+      noteId: noteId,
+      isPinned: this.state.isPinned
+    }
+    console.log("data in pin notres", data)
+    pinNotes(data).then(res => {
+      console.log("result of  pinnote", res);
+      this.handleGetNotes();
+    })
+      .catch(err => {
+        console.log("err in pinnote component ", err);
+      });
+  }
+
+  handleClosePin = () => {
+    this.setState({ isPinned: false })
+  }
   newNote = () => {
     this.props.initiateGetNotes(true)
     try {
@@ -87,6 +96,7 @@ handleOpenPin=()=>{
         this.setState({ cardOpen: false });
       } else {
         const noteData = {
+          isPinned: true,
           title: this.state.title,
           description: this.state.description
         };
@@ -97,7 +107,8 @@ handleOpenPin=()=>{
               snackbarOpen: true,
               title: "",
               description: "",
-              cardOpen: false
+              cardOpen: false,
+
             });
           } else {
             this.setState({
@@ -111,29 +122,29 @@ handleOpenPin=()=>{
       console.log(error);
     }
   }
-  handleOpen=()=>{
+  handleOpen = () => {
     this.setState({
       cardOpen: true
     })
   }
   render() {
-    return  !this.state.cardOpen ? (
+    return !this.state.cardOpen ? (
 
-      <div style={{display:"flex", justifyContent:"center", width:"82em", marginTop:"100px"}} 
-      onClick={this.handleOpen}>
-        <Card className="create" style={{width:"32em", padding:"18px", height:"25px", }} >
-         
-<div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-<div>
-  <InputBase
-  placeholder="Take a note..."/>
-</div>
-<div style={{display:"flex", justifyContent:"space-between", width:"10em"}}>
-  <div><CheckBoxOutlinedIcon/></div>
-  <div><ImageOutlinedIcon/></div>
-  <div><CreateOutlinedIcon/></div>
-</div>
-</div>
+      <div style={{ display: "flex", justifyContent: "center", width: "82em", marginTop: "100px" }}
+        onClick={this.handleOpen}>
+        <Card className="create" style={{ width: "32em", padding: "18px", height: "25px", }} >
+
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <div>
+              <InputBase
+                placeholder="Take a note..." />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", width: "10em" }}>
+              <div><CheckBoxOutlinedIcon /></div>
+              <div><ImageOutlinedIcon /></div>
+              <div><CreateOutlinedIcon /></div>
+            </div>
+          </div>
         </Card>
 
         <Snackbar
@@ -153,26 +164,19 @@ handleOpenPin=()=>{
           ]}
         />
       </div>
-  
-  
     ) : (
-      <div style={{marginTop:"125px",width:"82em",display:"flex", justifyContent:"center" }}>
-        {/* <MuiThemeProvider theme={thm}> */}
-          <Card className="card1" >
-          {!this.state.open ? ( 
-          <div style={{width:"30em", display:"flex", justifyContent:"flex-end"}}>  
-              
-<img src={require('../assets/unpin.png')} style={{width:"25px"}} onClick={this.handleOpenPin}/>    
-
-</div>
-):(
-<div style={{width:"30em", display:"flex", justifyContent:"flex-end"}}>
-  <img src={require('../assets/pin.png')} style={{width:"25px"}}/>
-
-    
-</div>
-  )}
+        <div style={{ marginTop: "125px", width: "82em", display: "flex", justifyContent: "center" }}>
         
+          <Card className="card1" >
+            {!this.state.isPinned ? (
+              <div style={{ width: "30em", display: "flex", justifyContent: "flex-end" }}>
+                <img src={require('../assets/unpin.png')} style={{ width: "25px" }} alt="unpin" onClick={this.handleOpenPin} />
+              </div>
+            ) : (
+                <div style={{ width: "30em", display: "flex", justifyContent: "flex-end" }} alt="pin" onClick={this.handleClosePin}>
+                  <img src={require('../assets/pin.png')} style={{ width: "25px" }} />
+                </div>
+              )}
             <div>
               <InputBase
                 multiline
@@ -239,9 +243,8 @@ handleOpenPin=()=>{
               </div>
             </div>
           </Card>
-        {/* </MuiThemeProvider> */}
-      </div>
-    );
+        </div>
+      );
   }
 }
 
