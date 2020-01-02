@@ -80,7 +80,8 @@ export async function saveNote(data) {
     const noteData = {
       title: data.title,
       description: data.description,
-      isPinned:data.isPinned,
+      isPinned: data.isPinned,
+      color: data.color,
       user_id: decoded.user_id
     };
     db.collection("notes").doc().set(noteData);
@@ -98,13 +99,12 @@ export async function getNote() {
     const decoded = jwt_decode(token);
     var noteData = [];
     await db.collection("notes").where("user_id", "==", decoded.user_id).get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
           noteData.push(doc);
         });
       });
     console.log(noteData);
-
     return noteData;
   } catch (error) {
     console.log(error);
@@ -115,50 +115,51 @@ export async function getNote() {
 // editNote and updata in firebase 
 export async function editNote(noteData) {
   await db.collection("notes").doc(noteData.noteId).update({
-      // await db.collection("notes").doc().update({
-      "title": noteData.title,
-      "description": noteData.description,
+    // await db.collection("notes").doc().update({
+    "title": noteData.title,
+    "description": noteData.description,
+    "color": noteData.color
   })
-  // console.log("bkshksbkjb")
-      .then(res => {
-          res = true;
-          return res
-      })
-      .catch(error => {
-          console.log(error.message)
-          return error.message
-      })
+    // console.log("bkshksbkjb")
+    .then(res => {
+      res = true;
+      return res
+    })
+    .catch(error => {
+      console.log(error.message)
+      return error.message
+    })
 
 }
 
 export async function pinNotes(noteData) {
-  if(noteData.isPinned){
-  await db.collection("notes").doc(noteData.noteId).update({
+  if (noteData.isPinned) {
+    await db.collection("notes").doc(noteData.noteId).update({
       // await db.collection("notes").doc().update({
       "isPinned": noteData.isPinned,
-  }).then(res => {
-    console.log("res",res);
-    
-          res = true;
-          return res
-      })
-      .catch(error => {
-          console.log(error.message)
-          return error.message
-      })
-    }else{
-      await db.collection("notes").doc(noteData.noteId).update({
- 
-        // await db.collection("notes").doc().update({
-        "isPinned": noteData.isPinned,
     }).then(res => {
-            res = true;
-            return res
-        })
-        .catch(error => {
-            console.log(error.message)
-            return error.message
-        })
-    }
+      console.log("res", res);
+
+      res = true;
+      return res
+    })
+      .catch(error => {
+        console.log(error.message)
+        return error.message
+      })
+  } else {
+    await db.collection("notes").doc(noteData.noteId).update({
+
+      // await db.collection("notes").doc().update({
+      "isPinned": noteData.isPinned,
+    }).then(res => {
+      res = true;
+      return res
+    })
+      .catch(error => {
+        console.log(error.message)
+        return error.message
+      })
+  }
 
 }

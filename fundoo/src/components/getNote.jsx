@@ -24,9 +24,6 @@ const thm = createMuiTheme({
     MuiCard: {
       root: {
         176: {
-          // borderRadius: "16px",
-          // marginTop:"35px",
-          // width:"20em",
           marginLeft: "-30em"
         }
       }
@@ -42,6 +39,7 @@ class Getnote extends Component {
       noteId: "",
       title: "",
       description: "",
+      color: "",
       isPinned: false,
       pin_open: false
     };
@@ -56,7 +54,6 @@ class Getnote extends Component {
     getNote()
       .then(res => {
         this.setState({
-          // / notes: res.noteData.noteData.noteData
           notes: res
         });
         console.log("res in notesData", this.state.notes);
@@ -70,17 +67,19 @@ class Getnote extends Component {
       open: !this.state.open
     });
   };
-  handleEditNote = (noteId, title, description) => {
+  handleEditNote = (noteId, title, description, color) => {
     this.setState({
       noteId: noteId,
       open: false,
       title: title,
-      description: description
+      description: description,
+      color: color
     });
     let data = {
       noteId: this.state.noteId,
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      color: this.state.color
     };
     console.log("result of editData", data);
     editNote(data)
@@ -104,16 +103,34 @@ class Getnote extends Component {
       description: description
     });
   };
+
   componentWillReceiveProps(nextProps) {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
       this.handleGetNotes()
     }
   }
-  handlePin(noteId) {
-    this.setState({
-      isPinned: !this.state.isPinned
-    })
+  // handlePin(noteId) {
+  //   this.setState({
+  //     isPinned: !this.state.isPinned
+  //   })
+  //   let data = {
+  //     noteId: noteId,
+  //     isPinned: this.state.isPinned
+  //   }
+  //   console.log("data in pin notres", data)
+  //   pinNotes(data).then(res => {
+  //     console.log("result of  pinnote", res);
+  //     this.handleGetNotes();
+  //   })
+  //     .catch(err => {
+  //       console.log("err in pinnote component ", err);
+  //     });
+  // }
+  handlePin = (noteId) => {
+    this.setState({ isPinned: true })
+    console.log("qabc");
+    
     let data = {
       noteId: noteId,
       isPinned: this.state.isPinned
@@ -127,20 +144,21 @@ class Getnote extends Component {
         console.log("err in pinnote component ", err);
       });
   }
-
+  handleClosePin = () => {
+    this.setState({ isPinned: false })
+  }
   render() {
-    // let svg=  this.props.pin_open ? (
-
-    // <img src={require('../assets/unpin.png')} style={{width:"25px",}} onClick={this.handleOpenPin}/>
-    // ):(
-    // <img src={require('../assets/pin.png')} style={{width:"25px",}} onClick={this.handleClosePin} />
-    // )
+    let svg =!this.props.pin_open ? (
+      <img src={require('../assets/unpin.png')} style={{ width: "25px", marginLeft: "9em", }} onClick={this.handlePin} />     
+      ) : (
+        <img src={require('../assets/pin.png')} style={{ width: "25px", marginLeft: '9em' }} onClick={this.handleClosePin} />
+      )
     return (
       <div className="_notes">
         {!this.state.open ? (
           <div className="_notes_">
             {this.state.notes.map(key => {
-              console.log("data", key.data().isPinned)
+              console.log("data", key.data().isPinned)           
               return (
                 <div className="notes_" >
                   <Card
@@ -155,26 +173,26 @@ class Getnote extends Component {
                       marginTop: "10%"
                     }}
                   >
-                    {/* {svg} */}
-                    <div style={{display:"flex",justifyContent:"space-between",padding:"5px"}}>
+
+                    <div style={{ display: "flex", justifyContent: "space-between", padding: "5px" }} >
                       <div>
-                        <div>
+                        <div >
                           {key.data().title}
                           {/* <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} /> */}
+                          {svg}
                         </div>
                         <div >
                           {key.data().description}
                         </div>
+                        <div>
+                          {key.data().color}
+                        </div>
                       </div>
                       <div>
-                        <img src={require('../assets/unpin.png')} style={{ width: "20px" }} onClick={() => this.handlePin(key.id)} />
+                        {/* <img src={require('../assets/unpin.png')} style={{ width: "20px" }} onClick={() => this.handlePin(key.id)} /> */}
 
                       </div>
                     </div>
-
-                    {/* <InputBase multiline value={key.data().title} onClick={()=>this.handleOpenDialogue(key.id)} />
-                    <InputBase multiline value={key.data().description} onClick={this.handleOpenDialogue}/> */}
-
                     <div onClick={this.handleOpenDialogue}  >
                       <div className="base">
                         <InputBase
@@ -183,7 +201,8 @@ class Getnote extends Component {
                             this.handleEditNote(
                               key.id,
                               key.data().title,
-                              key.data().description
+                              key.data().description,
+                              key.data().color
                             )
                           }
                         />
@@ -196,7 +215,8 @@ class Getnote extends Component {
                               this.handleEditNote(
                                 key.id,
                                 key.data().title,
-                                key.data().description
+                                key.data().description,
+                                key.data().color
                               )
                             }
                           />
@@ -215,7 +235,7 @@ class Getnote extends Component {
                         </Tooltip>
                       </div>
                       <div>
-                        <Tooltip title="select Colors">
+                        <Tooltip title="change Colors">
                           <ColorLensOutlinedIcon />
                         </Tooltip>
                       </div>

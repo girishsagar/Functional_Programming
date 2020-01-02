@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import {
-  Tooltip,
-  Card,
+  Tooltip, Card,
   InputBase,
   Button,
   IconButton
 } from "@material-ui/core";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import CloseIcon from "@material-ui/icons/Close";
+import ColorComponent from './colorNote'
 import { withRouter } from "react-router-dom";
 import { Snackbar } from "@material-ui/core";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
 import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
-import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
-
-import Slide from '@material-ui/core/Slide';
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import UndoTwoToneIcon from "@material-ui/icons/UndoTwoTone";
@@ -29,7 +26,7 @@ class Notes extends Component {
     this.state = {
       cardOpen: false,
       anchorEl: null,
-      cardColor: "",
+      color: this.props.color,
       title: "",
       description: "",
       isPinned: false,
@@ -41,6 +38,9 @@ class Notes extends Component {
   componentDidMount() {
     this.handleGetNotes();
   }
+
+
+
   handleGetNotes = () => {
     getNote()
       .then(res => {
@@ -58,9 +58,6 @@ class Notes extends Component {
     this.setState({ snackbarOpen: false });
   };
 
- TransitionLeft=(props)=> {
-  return <Slide {...props} direction="left" />;
-}
   openCard = () => {
     this.setState({ cardOpen: true });
   };
@@ -85,7 +82,12 @@ class Notes extends Component {
         console.log("err in pinnote component ", err);
       });
   }
-
+  handleColorClose = () => {
+    this.setState({ color: true })
+  }
+  colorChange = () => {
+    this.setState()
+  }
   handleClosePin = () => {
     this.setState({ isPinned: false })
   }
@@ -98,7 +100,8 @@ class Notes extends Component {
         const noteData = {
           isPinned: true,
           title: this.state.title,
-          description: this.state.description
+          description: this.state.description,
+          color: this.state.color
         };
         saveNote(noteData).then(res => {
           if (res === true) {
@@ -108,6 +111,7 @@ class Notes extends Component {
               title: "",
               description: "",
               cardOpen: false,
+              color: "",
 
             });
           } else {
@@ -122,6 +126,12 @@ class Notes extends Component {
       console.log(error);
     }
   }
+  paletteProps = (e) => {
+    // console.log(e)
+    this.props.colorChange(e)
+    // console.log(this.state.color)
+  }
+
   handleOpen = () => {
     this.setState({
       cardOpen: true
@@ -130,16 +140,16 @@ class Notes extends Component {
   render() {
     return !this.state.cardOpen ? (
 
-      <div style={{ display: "flex", justifyContent: "center", width: "82em", marginTop: "100px" }}
+      <div className="new_card"
         onClick={this.handleOpen}>
-        <Card className="create" style={{ width: "32em", padding: "18px", height: "25px", }} >
+        <Card className="create" >
 
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div className="create1">
             <div>
               <InputBase
                 placeholder="Take a note..." />
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", width: "10em" }}>
+            <div className="create_icon">
               <div><CheckBoxOutlinedIcon /></div>
               <div><ImageOutlinedIcon /></div>
               <div><CreateOutlinedIcon /></div>
@@ -165,15 +175,15 @@ class Notes extends Component {
         />
       </div>
     ) : (
-        <div style={{ marginTop: "125px", width: "82em", display: "flex", justifyContent: "center" }}>
-        
-          <Card className="card1" >
+        <div className="card_open">
+
+          <Card className="card1" style={{ backgroundColor: this.props.color }} >
             {!this.state.isPinned ? (
-              <div style={{ width: "30em", display: "flex", justifyContent: "flex-end" }}>
+              <div className="unpin">
                 <img src={require('../assets/unpin.png')} style={{ width: "25px" }} alt="unpin" onClick={this.handleOpenPin} />
               </div>
             ) : (
-                <div style={{ width: "30em", display: "flex", justifyContent: "flex-end" }} alt="pin" onClick={this.handleClosePin}>
+                <div className="pin" alt="pin" onClick={this.handleClosePin}>
                   <img src={require('../assets/pin.png')} style={{ width: "25px" }} />
                 </div>
               )}
@@ -207,9 +217,7 @@ class Notes extends Component {
                 </Tooltip>
               </div>
               <div>
-                <Tooltip title="select Colors">
-                  <ColorLensOutlinedIcon />
-                </Tooltip>
+                <ColorComponent paletteProps={this.paletteProps} />
               </div>
               <div>
                 <Tooltip title="Add image">
@@ -223,6 +231,7 @@ class Notes extends Component {
               </div>
               <div>
                 <Tooltip title="More">
+
                   <MoreVertOutlinedIcon />
                 </Tooltip>
               </div>

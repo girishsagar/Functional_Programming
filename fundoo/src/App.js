@@ -12,6 +12,7 @@ import note from "./components/note";
 import dashBoard from "./components/dashBoard";
 import getnote from "./components/getNote";
 import editNote from "./components/editNote"
+import color from "./components/colorNote"
 class App extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/getnote" component={getnote}></Route>
           <Route path="/dashBoard" component={dashBoard}></Route>
           <Route path="/editNote" component={editNote}></Route>
+          <Route path="/color" component={color}></Route>
         </Switch>
       </Router>
     );
