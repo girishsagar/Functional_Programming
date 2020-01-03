@@ -14,6 +14,7 @@ import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+
 const thm = createMuiTheme({
   overrides: {
     MuiDivider: {
@@ -27,8 +28,14 @@ const thm = createMuiTheme({
 class DrawerNav extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open:false,
+    };
   }
+  handleArchive =()=>{
+    this.props.history.push('/archive')
+  }
+ 
   render() {
     return (
       <div className="draw">
@@ -69,8 +76,8 @@ class DrawerNav extends React.Component {
                 <Divider />
                 <div className="Archive">
                   <ListItem button key="Archive">
-                    <ListItemIcon>
-                      <ArchiveIcon />
+                    <ListItemIcon>  
+                      <ArchiveIcon onClick={this.handleArchive}/>
                     </ListItemIcon>
                     <ListItemText primary="Archive" />
                   </ListItem>
@@ -88,6 +95,7 @@ class DrawerNav extends React.Component {
             </List>
           </div>
         </Drawer>
+      
       </div>
     );
   }

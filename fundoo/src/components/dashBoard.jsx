@@ -31,6 +31,7 @@ class Dashboard extends Component {
         <Navigation />
         <Notes initiateGetNotes={this.initiateGetNotes} colorChange={this.colorChange} color={this.state.color}/>
         <Getnote getNotes={this.state.getNotesProps} color={this.state.color}/>
+
       </div>
     );
   }

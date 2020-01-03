@@ -112,9 +112,6 @@ display: flex;
   align-items: center;
   border-radius: 400px;
 }
-.Change{
-  
-}
 /* createNotes CSS */
 /* .card {
   width: 25em;
@@ -127,8 +124,9 @@ display: flex;
 .new_card{
   display: flex;
   justify-content:center;
-  width: 82em;
+  width: 95em;
   margin-top: 100px;
+ flex-wrap: wrap;
 }
 .create{
   padding: 18px;
@@ -146,19 +144,19 @@ display: flex;
   justify-content: space-between;
 }
 .card_open{
-  width: 82em;
+  width: 95em;
     margin-top: 125px;
     display: flex;
     justify-content: center;
 }
 .pin {
   justify-content: flex-end;
-  width: 30em;
+  width: -14em;
   display: flex;
 }
 .unpin{
   justify-content: flex-end;
-  width: 30em;
+  width: -14em;
   display: flex;
 }
 .unpin1{
@@ -242,9 +240,11 @@ dashBoard CSS */
     width: 60%;
     flex-wrap: wrap;
     justify-content: center;
+    
 }
 ._notes{
   display: flex;
   justify-content: center;
 }
+
 /* -------------->Media Query for appBar<-------------------- */

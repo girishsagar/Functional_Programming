@@ -75,7 +75,7 @@ class Navigation extends Component {
         <MuiThemeProvider theme={thm}>
           <AppBar >
             <Toolbar>
-              <div className="Menu_Button"  >
+              <div className="Menu_Button">
                 <div >
                   <IconButton onClick={this.menuOpen} >
                     <MenuIcon />

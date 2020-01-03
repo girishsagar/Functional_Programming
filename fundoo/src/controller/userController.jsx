@@ -67,6 +67,7 @@ export async function forgotPassword(Email) {
   }
 }
 
+
 export async function Signout() {
   await firebase.auth().firebaseAuthorization.signOut();
   localStorage.removeItem("usertoken");
@@ -82,6 +83,7 @@ export async function saveNote(data) {
       description: data.description,
       isPinned: data.isPinned,
       color: data.color,
+      archieve: data.archieve,
       user_id: decoded.user_id
     };
     db.collection("notes").doc().set(noteData);
@@ -135,11 +137,9 @@ export async function editNote(noteData) {
 export async function pinNotes(noteData) {
   if (noteData.isPinned) {
     await db.collection("notes").doc(noteData.noteId).update({
-      // await db.collection("notes").doc().update({
       "isPinned": noteData.isPinned,
     }).then(res => {
       console.log("res", res);
-
       res = true;
       return res
     })
@@ -149,8 +149,6 @@ export async function pinNotes(noteData) {
       })
   } else {
     await db.collection("notes").doc(noteData.noteId).update({
-
-      // await db.collection("notes").doc().update({
       "isPinned": noteData.isPinned,
     }).then(res => {
       res = true;
@@ -162,4 +160,22 @@ export async function pinNotes(noteData) {
       })
   }
 
+}
+export async function archiveTheNote(noteData) {
+  console.log("n.lhjkljl",noteData);
+  let data =noteData.noteId
+  console.log("the databacj",data);
+  await db.collection("notes").doc(noteData.noteId).update({
+    "archieve": noteData.archieve,
+   
+    //  "isPinned":noteData.pinned
+  })
+    .then(res => {
+      res = true
+     
+      return res
+    }).catch(error => {
+      return error.message
+    })
+   
 }

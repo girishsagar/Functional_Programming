@@ -26,11 +26,12 @@ class Notes extends Component {
     this.state = {
       cardOpen: false,
       anchorEl: null,
-      color: this.props.color,
+     color:this.props.color,
       title: "",
       description: "",
       isPinned: false,
-      // pin_open:false,
+      archieve: false,
+      color: this.props.color,
       snackbarOpen: false,
       snackbarMsg: ""
     };
@@ -38,8 +39,6 @@ class Notes extends Component {
   componentDidMount() {
     this.handleGetNotes();
   }
-
-
 
   handleGetNotes = () => {
     getNote()
@@ -98,11 +97,15 @@ class Notes extends Component {
         this.setState({ cardOpen: false });
       } else {
         const noteData = {
-          isPinned: true,
+        
           title: this.state.title,
           description: this.state.description,
-          color: this.state.color
+          color: this.state.color,
+          archieve: this.state.archieve,
+          isPinned: true,
         };
+        console.log("--------------",noteData);
+        
         saveNote(noteData).then(res => {
           if (res === true) {
             this.setState({
@@ -112,6 +115,7 @@ class Notes extends Component {
               description: "",
               cardOpen: false,
               color: "",
+              archieve:""
 
             });
           } else {
@@ -137,6 +141,15 @@ class Notes extends Component {
       cardOpen: true
     })
   }
+  createArchieveNote = async () => {
+    try {
+        await this.setState({ isPinned: false, archieve: true })
+        this.newNote()
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
   render() {
     return !this.state.cardOpen ? (
 
@@ -226,12 +239,11 @@ class Notes extends Component {
               </div>
               <div>
                 <Tooltip title="Archive">
-                  <ArchiveOutlinedIcon />
+                  <ArchiveOutlinedIcon  onClick={this.createArchieveNote} />
                 </Tooltip>
               </div>
               <div>
                 <Tooltip title="More">
-
                   <MoreVertOutlinedIcon />
                 </Tooltip>
               </div>

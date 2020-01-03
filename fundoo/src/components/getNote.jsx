@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tooltip, Card, InputBase, Button } from "@material-ui/core";
+import { Tooltip, Card, InputBase, Button, IconButton } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import ImageOutlinedIcon from "@material-ui/icons/ImageOutlined";
@@ -8,10 +8,12 @@ import ColorLensOutlinedIcon from "@material-ui/icons/ColorLensOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
-import { editNote, getNote, pinNotes } from "../controller/userController";
+import { editNote, getNote, pinNotes, archiveTheNote } from "../controller/userController";
 import Dialog from "@material-ui/core/Dialog";
+import ArchiveIcon from '@material-ui/icons/Archive';
+import UnarchiveIcon from '@material-ui/icons/Unarchive';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
-import pin from "../assets/pin.png"
+
 const thm = createMuiTheme({
   overrides: {
     MuiCard: {
@@ -41,15 +43,20 @@ class Getnote extends Component {
       description: "",
       color: "",
       isPinned: false,
-      pin_open: false
+      pin_open: false,
+      showIcon: false,
     };
   }
   snackbarClose = e => {
     this.setState({ snackbarOpen: false });
   };
+  showIcons = () => {
+    this.setState({ showIcon: true })
+  }
   componentDidMount() {
     this.handleGetNotes();
   }
+
   handleGetNotes = () => {
     getNote()
       .then(res => {
@@ -108,33 +115,36 @@ class Getnote extends Component {
     console.log("nextProps", nextProps);
     if (nextProps.getNotes) {
       this.handleGetNotes()
+    
     }
+  } 
+ 
+  componentWillReceiveProps(nextProps){
+    console.log("the archived pin is ",nextProps)
+    if (nextProps.archiveNote) {
+      this.archiveTheNote()
   }
-  // handlePin(noteId) {
-  //   this.setState({
-  //     isPinned: !this.state.isPinned
-  //   })
-  //   let data = {
-  //     noteId: noteId,
-  //     isPinned: this.state.isPinned
-  //   }
-  //   console.log("data in pin notres", data)
-  //   pinNotes(data).then(res => {
-  //     console.log("result of  pinnote", res);
-  //     this.handleGetNotes();
-  //   })
-  //     .catch(err => {
-  //       console.log("err in pinnote component ", err);
-  //     });
-  // }
+}
+archiveNote = (noteId) => {
+  let data;
+     data = {
+      //  id: this.props.data.id,  
+      noteId: noteId,
+      archieve: false,
+      // isPinned: false
+    }
+    console.log("bkswbh",data);
+        
+  archiveTheNote(data).then(res => {
+    this.handleGetNotes()
+  })
+}
   handlePin = (noteId) => {
     this.setState({ isPinned: true })
-    console.log("qabc");
-    
     let data = {
       noteId: noteId,
       isPinned: this.state.isPinned
-    }
+    }     
     console.log("data in pin notres", data)
     pinNotes(data).then(res => {
       console.log("result of  pinnote", res);
@@ -148,17 +158,38 @@ class Getnote extends Component {
     this.setState({ isPinned: false })
   }
   render() {
-    let svg =!this.props.pin_open ? (
-      <img src={require('../assets/unpin.png')} style={{ width: "25px", marginLeft: "9em", }} onClick={this.handlePin} />     
-      ) : (
-        <img src={require('../assets/pin.png')} style={{ width: "25px", marginLeft: '9em' }} onClick={this.handleClosePin} />
+    let svg = this.props.isPinned ? (
+      <div className="unpin" onClick={this.handlePin}>
+        <img src={require('../assets/unpin.png')} style={{ width: "25px", marginLeft: "11em", marginTop: "-1em" }}  />
+      </div>
+    ) : (
+        <div className="pin"  onClick={this.handleClosePin} >
+          <img src={require('../assets/pin.png')} style={{ width: "25px", marginLeft: '11em', }}/>
+        </div>
       )
+
+    // let archieveIcon = !this.props.archieve ?
+    //   <IconButton onClick={()=>this.archiveNote()}>
+    //     <Tooltip title="Archieve">
+    //       <ArchiveIcon />
+    //     </Tooltip>
+    //   </IconButton>
+    //   :
+    //   <IconButton onClick={this.archiveNote}>
+    //     <Tooltip title="UnArchieve">
+    //       <UnarchiveIcon />
+    //     </Tooltip>
+    //   </IconButton>
+    // let archieveIconShow = this.state.showIcon ? <IconButton ></IconButton> : archieveIcon
+    // let iconDispaly = !this.state.showIcon ? "getNote-icons-hide" : "getNote-icons"
+
     return (
       <div className="_notes">
         {!this.state.open ? (
           <div className="_notes_">
             {this.state.notes.map(key => {
-              console.log("data", key.data().isPinned)           
+              console.log("data", key.data().isPinned)
+              console.log("the archive is ", key.data().archieve)
               return (
                 <div className="notes_" >
                   <Card
@@ -170,27 +201,23 @@ class Getnote extends Component {
                       margin: "5px",
                       padding: "10px",
                       boxShadow: "0px 1px 7px 0px",
-                      marginTop: "10%"
+                      marginTop: "10%",
+                      borderRadius:"1em"
                     }}
                   >
 
                     <div style={{ display: "flex", justifyContent: "space-between", padding: "5px" }} >
                       <div>
-                        <div >
+                        <div>
+                        {svg}
                           {key.data().title}
+                          
                           {/* <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} /> */}
-                          {svg}
+                          
                         </div>
                         <div >
                           {key.data().description}
                         </div>
-                        <div>
-                          {key.data().color}
-                        </div>
-                      </div>
-                      <div>
-                        {/* <img src={require('../assets/unpin.png')} style={{ width: "20px" }} onClick={() => this.handlePin(key.id)} /> */}
-
                       </div>
                     </div>
                     <div onClick={this.handleOpenDialogue}  >
@@ -244,9 +271,10 @@ class Getnote extends Component {
                           <ImageOutlinedIcon />
                         </Tooltip>
                       </div>
-                      <div>
+                      <div onClick={()=>this.archiveNote(key.id)}>
                         <Tooltip title="Archive">
-                          <ArchiveOutlinedIcon />
+                        <ArchiveIcon />
+                        {/* {archieveIcon} */}
                         </Tooltip>
                       </div>
                       <div>
@@ -303,6 +331,7 @@ class Getnote extends Component {
                       </div>
                       <div>
                         <ArchiveOutlinedIcon />
+                        {/* {archieveIconShow} */}
                       </div>
                       <div>
                         <MoreVertOutlinedIcon />
@@ -319,12 +348,37 @@ class Getnote extends Component {
                   </div>
                 </Card>
                 {/* </MuiThemeProvider> */}
+
               </Dialog>
             </div>
           )}
+    
       </div>
     );
   }
 }
 
 export default withRouter(Getnote);
+
+
+
+
+/************************************************************
+// handlePin(noteId) {
+  //   this.setState({
+  //     isPinned: !this.state.isPinned
+  //   })
+  //   let data = {
+  //     noteId: noteId,
+  //     isPinned: this.state.isPinned
+  //   }
+  //   console.log("data in pin notres", data)
+  //   pinNotes(data).then(res => {
+  //     console.log("result of  pinnote", res);
+  //     this.handleGetNotes();
+  //   })
+  //     .catch(err => {
+  //       console.log("err in pinnote component ", err);
+  //     });
+  // }
+  /******************************************************** */

@@ -68,9 +68,9 @@ class ColorComponent extends Component {
             </ClickAwayListener>
             </Tooltip>
             <div className="Change">
-            <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl}
+            <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} className="paint"
                 style={{
-                    zIndex: "9999",width:"25em"
+                    zIndex: "9999",width:"25em",display:"flex",flexDirection:"row",margin:"25px"
                 }}
             >
                 
