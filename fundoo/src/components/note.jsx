@@ -26,12 +26,11 @@ class Notes extends Component {
     this.state = {
       cardOpen: false,
       anchorEl: null,
-     color:this.props.color,
+     color:"",
       title: "",
       description: "",
       isPinned: false,
       archieve: false,
-      color: this.props.color,
       snackbarOpen: false,
       snackbarMsg: ""
     };
@@ -91,6 +90,7 @@ class Notes extends Component {
     this.setState({ isPinned: false })
   }
   newNote = () => {
+    console.log("yes im in")
     this.props.initiateGetNotes(true)
     try {
       if (this.state.title === "" && this.state.description === "") {
@@ -131,7 +131,11 @@ class Notes extends Component {
     }
   }
   paletteProps = (e) => {
-    // console.log(e)
+    console.log(e)
+    this.setState({
+      color:e
+    })
+
     this.props.colorChange(e)
     // console.log(this.state.color)
   }

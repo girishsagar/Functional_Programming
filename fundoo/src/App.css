@@ -29,12 +29,13 @@
 .avatar {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 /* registerPage css */
 
 .SignUp {
   margin-top: 25px;
-  width: 100%;
+  width: 50%;
   height: 75vh;
   display: flex;
   text-align: center;
@@ -80,7 +81,7 @@
   align-items: flex;
   margin-top: 20px;
   width: 50%;
-  margin-left: -55%;
+  
 }
 .regbutton2 {
   align-content: center;
@@ -138,6 +139,3 @@
   font-size: 20px;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
-
-
-

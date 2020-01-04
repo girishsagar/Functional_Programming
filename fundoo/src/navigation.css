@@ -54,7 +54,7 @@ display: flex;
 }
 }
   /* drawernavigation */
-.notes {
+ .notes {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -234,13 +234,26 @@ dashBoard CSS */
 .base{
   display: flex;
 }
-
-._notes_{
+.notes_dash{
   display: flex;
     width: 60%;
     flex-wrap: wrap;
     justify-content: center;
-    
+    margin-top: 100px;
+  
+}
+._notes_{
+  display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    justify-content: center;   
+}
+._notes_dash{
+  display: flex;
+  width: 60%;
+  flex-wrap: wrap;
+  justify-content: center;  
+  margin-top: 100px;
 }
 ._notes{
   display: flex;

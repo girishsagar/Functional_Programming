@@ -75,9 +75,11 @@ export async function Signout() {
 
 export async function saveNote(data) {
   try {
+    console.log("data in controller",data)
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
     // console.log('kjdkjsdk')
+    console.log("color",data.color)
     const noteData = {
       title: data.title,
       description: data.description,

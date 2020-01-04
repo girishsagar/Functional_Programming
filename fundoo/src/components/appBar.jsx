@@ -117,7 +117,7 @@ class Navigation extends Component {
               </div>
             </Toolbar>
           </AppBar>
-          <DrawerNav open={this.state.open} />
+          <DrawerNav open={this.state.open} handleArchive={this.props.handleArchive}/>
           <Dropdown
             anchorEl={this.state.anchorEl}
             closeMenu={this.handleClose} />

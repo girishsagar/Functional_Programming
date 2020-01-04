@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tooltip, IconButton, Popper,Paper,ClickAwayListener, Menu } from '@material-ui/core'
+import { Tooltip, IconButton, Popper, Paper, ClickAwayListener, Menu } from '@material-ui/core'
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import { withRouter } from 'react-router-dom';
 const colorPalette = [{ name: "default", colorCode: "#FDFEFE" },
@@ -20,34 +20,33 @@ class ColorComponent extends Component {
         super(props);
         this.state = {
             // open: false,
-            anchorEl:false
+            anchorEl: false
         }
     }
-    handleClickAway=()=>{
-        this.setState({
-            anchorEl:false
-        })
-    }
-  
-    handleChangeColor = (e) => {
-        console.log("hiii" +e);
-        
-            this.props.paletteProps(e.target.value)
-    }
-    handleClose=()=>{    
+    handleClickAway = () => {
         this.setState({
             anchorEl: false
         })
     }
-   
+
+    handleChangeColor = (e) => {
+        console.log("hiii" + e);
+        this.props.paletteProps(e.target.value)
+    }
+    handleClose = () => {
+        this.setState({
+            anchorEl: false
+        })
+    }
+
     handleClick(event) {
 
         this.setState({
-        anchorEl: this.state.anchorEl ? false : event.target
+            anchorEl: this.state.anchorEl ? false : event.target
         });
-        };
+    };
     render() {
-     
+
         const colorChange = colorPalette.map((key) => {
             return (
                 <div className="color-map">
@@ -62,24 +61,24 @@ class ColorComponent extends Component {
         })
         return (
             <div className="colorpalette-div">
-            <Tooltip title="change color">
-            <ClickAwayListener onClickAway={this.handleClickAway}>
-                <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
-            </ClickAwayListener>
-            </Tooltip>
-            <div className="Change">
-            <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} className="paint"
-                style={{
-                    zIndex: "9999",width:"25em",display:"flex",flexDirection:"row",margin:"25px"
-                }}
-            >
-                
-                <Paper className="color-styles">
-                    {colorChange}
-                </Paper>
-                
-            </Popper>
-            </div>
+                <Tooltip title="change color">
+                    <ClickAwayListener onClickAway={this.handleClickAway}>
+                        <ColorLensOutlinedIcon onClick={(event) => this.handleClick(event)} cursor="pointer" />
+                    </ClickAwayListener>
+                </Tooltip>
+                <div className="Change">
+                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} className="paint"
+                        style={{
+                            zIndex: "9999", width: "25em", display: "flex", flexDirection: "row", margin: "25px"
+                        }}
+                    >
+
+                        <Paper className="color-styles">
+                            {colorChange}
+                        </Paper>
+
+                    </Popper>
+                </div>
             </div>
         )
     }

@@ -14,7 +14,8 @@ import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-
+import archive from "./archive";
+import editNote from "./editNote"
 const thm = createMuiTheme({
   overrides: {
     MuiDivider: {
@@ -33,22 +34,27 @@ class DrawerNav extends React.Component {
     };
   }
   handleArchive =()=>{
-    this.props.history.push('/archive')
+   this.props.handleArchive();
   }
- 
+ handleNote=()=>{
+   this.props.handleNote(); 
+ }
+
+
   render() {
     return (
-      <div className="draw">
+      <div className="draw_dash ">
         <Drawer
           variant="persistent"
           overflow="auto"
           open={this.props.open}
           width={250}
         >
-          <div>
+          <div className="dash_note">
             <List>
+              <div>
               <MuiThemeProvider theme={thm}>
-                <div className="notes">
+                <div className="dashNotesNotes" onClick={this.handleArchive} >
                   <ListItem button key="Note">
                     <ListItemIcon>
                       <EmojiObjectsOutlinedIcon />
@@ -56,10 +62,10 @@ class DrawerNav extends React.Component {
                     <ListItemText primary="Note" />
                   </ListItem>
                 </div>
-                <div className="Reminder">
+                <div className="Reminder" >
                   <ListItem button key="Reminder">
                     <ListItemIcon>
-                      <AddAlertIcon />
+                      <AddAlertIcon   />
                     </ListItemIcon>
                     <ListItemText primary="Reminder" />{" "}
                   </ListItem>
@@ -74,10 +80,10 @@ class DrawerNav extends React.Component {
                   </ListItem>
                 </div>
                 <Divider />
-                <div className="Archive">
+                <div className="Archive" onClick={this.handleArchive}>
                   <ListItem button key="Archive">
                     <ListItemIcon>  
-                      <ArchiveIcon onClick={this.handleArchive}/>
+                      <ArchiveIcon />
                     </ListItemIcon>
                     <ListItemText primary="Archive" />
                   </ListItem>
@@ -92,7 +98,9 @@ class DrawerNav extends React.Component {
                   </ListItem>
                 </div>
               </MuiThemeProvider>
+              </div>
             </List>
+            
           </div>
         </Drawer>
       
