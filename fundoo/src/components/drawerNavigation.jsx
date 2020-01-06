@@ -54,7 +54,7 @@ class DrawerNav extends React.Component {
             <List>
               <div>
               <MuiThemeProvider theme={thm}>
-                <div className="dashNotesNotes" onClick={this.handleArchive} >
+                <div className="dashNotesNotes" onClick={this.handleNote} >
                   <ListItem button key="Note">
                     <ListItemIcon>
                       <EmojiObjectsOutlinedIcon />
@@ -88,7 +88,7 @@ class DrawerNav extends React.Component {
                     <ListItemText primary="Archive" />
                   </ListItem>
                 </div>
-                <Divider />
+            
                 <div className="Trash">
                   <ListItem button key="Trash">
                     <ListItemIcon>

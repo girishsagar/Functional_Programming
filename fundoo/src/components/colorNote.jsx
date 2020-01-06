@@ -3,8 +3,8 @@ import { Tooltip, IconButton, Popper, Paper, ClickAwayListener, Menu } from '@ma
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import { withRouter } from 'react-router-dom';
 const colorPalette = [{ name: "default", colorCode: "#FDFEFE" },
-{ name: "Red", colorCode: "RGB(242, 24, 3 )" },
-{ name: "Cyan", colorCode: "RGB(3, 242, 24)" },
+{ name: "Red", colorCode: "RGB(102, 204, 255)" },
+{ name: "Cyan", colorCode: "RGB(179, 255, 102)" },
 { name: "Blue", colorCode: "#2196f3" },
 { name: "Indigo", colorCode: "#9fa8da" },
 { name: "LightBlue", colorCode: "#90caf9" },
@@ -31,7 +31,7 @@ class ColorComponent extends Component {
 
     handleChangeColor = (e) => {
         console.log("hiii" + e);
-        this.props.paletteProps(e.target.value)
+        this.props.paletteProps(e.target.value,this.props.id)
     }
     handleClose = () => {
         this.setState({
@@ -49,12 +49,14 @@ class ColorComponent extends Component {
 
         const colorChange = colorPalette.map((key) => {
             return (
-                <div className="color-map">
+                <div className="color-map" >
                     <Tooltip title={key.name}>
+    
                         <IconButton style={{ backgroundColor: key.colorCode, border: "silver 2px solid" }}
                             value={key.colorCode}
                             onClick={this.handleChangeColor}>
                         </IconButton>
+                
                     </Tooltip>
                 </div>
             )
@@ -67,7 +69,7 @@ class ColorComponent extends Component {
                     </ClickAwayListener>
                 </Tooltip>
                 <div className="Change">
-                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} className="paint"
+                    <Popper open={this.state.anchorEl} anchorEl={this.state.anchorEl} className="paint" 
                         style={{
                             zIndex: "9999", width: "25em", display: "flex", flexDirection: "row", margin: "25px"
                         }}

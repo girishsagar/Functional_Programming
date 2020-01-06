@@ -14,6 +14,7 @@ import getnote from "./components/getNote";
 import editNote from "./components/editNote"
 import color from "./components/colorNote"
 import archive from "./components/archive"
+import more from "./components/more"
 class App extends Component {
   render() {
     return (
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/editNote" component={editNote}></Route>
           <Route path="/color" component={color}></Route>
           <Route path="/archive" component={archive}></Route>
+          <Route path="more" component={more}></Route>
         </Switch>
       </Router>
     );

@@ -69,6 +69,7 @@ class Navigation extends Component {
   handleClose = event => {
     this.setState({ anchorEl: null });
   };
+  
   render() {
     return (
       <div className="nav">
@@ -117,7 +118,7 @@ class Navigation extends Component {
               </div>
             </Toolbar>
           </AppBar>
-          <DrawerNav open={this.state.open} handleArchive={this.props.handleArchive}/>
+          <DrawerNav open={this.state.open} handleArchive={this.props.handleArchive} handleNote={this.props.handleNote}/>
           <Dropdown
             anchorEl={this.state.anchorEl}
             closeMenu={this.handleClose} />

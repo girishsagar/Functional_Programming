@@ -26,10 +26,11 @@ class Notes extends Component {
     this.state = {
       cardOpen: false,
       anchorEl: null,
-     color:"",
+      color:"",
       title: "",
       description: "",
       isPinned: false,
+      // isDeleted:false,
       archieve: false,
       snackbarOpen: false,
       snackbarMsg: ""
@@ -97,11 +98,11 @@ class Notes extends Component {
         this.setState({ cardOpen: false });
       } else {
         const noteData = {
-        
-          title: this.state.title,
+        title: this.state.title,
           description: this.state.description,
           color: this.state.color,
           archieve: this.state.archieve,
+          isDeleted:this.state.isDeleted,
           isPinned: true,
         };
         console.log("--------------",noteData);
@@ -115,7 +116,8 @@ class Notes extends Component {
               description: "",
               cardOpen: false,
               color: "",
-              archieve:""
+              archieve:"",
+              isDeleted:""
 
             });
           } else {
@@ -159,7 +161,7 @@ class Notes extends Component {
 
       <div className="new_card"
         onClick={this.handleOpen}>
-        <Card className="create" >
+        <Card className="create" style={{boxShadow: "0px 0px 5px 1px"}}>
 
           <div className="create1">
             <div>
@@ -197,7 +199,7 @@ class Notes extends Component {
           <Card className="card1" style={{ backgroundColor: this.props.color }} >
             {!this.state.isPinned ? (
               <div className="unpin">
-                <img src={require('../assets/unpin.png')} style={{ width: "25px" }} alt="unpin" onClick={this.handleOpenPin} />
+                <img src={require('../assets/unpin.svg')} style={{ width: "25px" }} alt="unpin" onClick={this.handleOpenPin} />
               </div>
             ) : (
                 <div className="pin" alt="pin" onClick={this.handleClosePin}>

@@ -86,6 +86,7 @@ export async function saveNote(data) {
       isPinned: data.isPinned,
       color: data.color,
       archieve: data.archieve,
+      isDeleted:data.isDeleted,
       user_id: decoded.user_id
     };
     db.collection("notes").doc().set(noteData);
@@ -180,4 +181,33 @@ export async function archiveTheNote(noteData) {
       return error.message
     })
    
+}
+export async function addNoteToTrash(noteData){
+  let data =noteData.noteId
+  console.log('the jsldjlsj',data);
+  
+  await db.collection("notes").doc(noteData.noteId).update({
+    // isDeleted: true,
+    "isDeleted":noteData.isDeleted,
+    // archieve: false,
+    // isPinned: false,
+  })
+  .then(res=> {
+    res=true;
+    return res
+}).catch(function(error) {
+  return error.message
+});
+}
+
+export async function colorChange(noteData){
+  await db.collection("notes").doc(noteData.id).update({
+    color:noteData.color
+  })
+  .then(res=> {
+    res=true;
+    return res
+}).catch(function(error) {
+  return error.message
+});
 }

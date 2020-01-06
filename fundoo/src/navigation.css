@@ -20,6 +20,7 @@
   width: 40em;
   border-radius: 27px;
   background-color: #d3d3d345;
+  height: 48px;
 }
 .searchicon { 
   display: flex;
@@ -32,7 +33,8 @@
 .search_main_div{
   display: flex;
   justify-content: space-around;
-  width: 62em;
+  width: 63em;
+  margin-left: 10em;
 }
 .icons {
   display: flex;
@@ -40,7 +42,7 @@
   align-items: center;
   margin-left: 100px;
 }
-@media screen and (min-width:601px){
+/* @media screen and (min-width:601px){
   .Menu_Button{
 display: flex;
   }
@@ -52,7 +54,7 @@ display: flex;
   justify-content:center;
   
 }
-}
+} */
   /* drawernavigation */
  .notes {
   display: flex;
@@ -82,8 +84,10 @@ display: flex;
   align-items: center;
   width: 250px;
   border-radius: 400px;
-
+margin-top: 10px;
+margin-bottom: 10px;
   font-display: block;
+
 }
 .labels:hover {
   background-color: rgb(233, 233, 10);
@@ -124,9 +128,7 @@ display: flex;
 .new_card{
   display: flex;
   justify-content:center;
-  width: 95em;
   margin-top: 100px;
- flex-wrap: wrap;
 }
 .create{
   padding: 18px;
@@ -144,7 +146,8 @@ display: flex;
   justify-content: space-between;
 }
 .card_open{
-  width: 95em;
+  /* width: 95em; */
+  width: 95%;
     margin-top: 125px;
     display: flex;
     justify-content: center;
@@ -259,5 +262,14 @@ dashBoard CSS */
   display: flex;
   justify-content: center;
 }
+
+/*More css*/
+
+.drop{
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 
 /* -------------->Media Query for appBar<-------------------- */
