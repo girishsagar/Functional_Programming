@@ -15,6 +15,8 @@ import editNote from "./components/editNote"
 import color from "./components/colorNote"
 import archive from "./components/archive"
 import more from "./components/more"
+import trash from "./components/trash";
+
 class App extends Component {
   render() {
     return (
@@ -32,7 +34,8 @@ class App extends Component {
           <Route path="/editNote" component={editNote}></Route>
           <Route path="/color" component={color}></Route>
           <Route path="/archive" component={archive}></Route>
-          <Route path="more" component={more}></Route>
+          <Route path="/more" component={more}></Route>
+          <Route path="/trash" component={trash}></Route>
         </Switch>
       </Router>
     );

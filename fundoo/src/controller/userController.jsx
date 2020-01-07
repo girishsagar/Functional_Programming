@@ -120,12 +120,10 @@ export async function getNote() {
 // editNote and updata in firebase 
 export async function editNote(noteData) {
   await db.collection("notes").doc(noteData.noteId).update({
-    // await db.collection("notes").doc().update({
     "title": noteData.title,
     "description": noteData.description,
     "color": noteData.color
   })
-    // console.log("bkshksbkjb")
     .then(res => {
       res = true;
       return res
@@ -170,8 +168,6 @@ export async function archiveTheNote(noteData) {
   console.log("the databacj",data);
   await db.collection("notes").doc(noteData.noteId).update({
     "archieve": noteData.archieve,
-   
-    //  "isPinned":noteData.pinned
   })
     .then(res => {
       res = true
@@ -182,15 +178,13 @@ export async function archiveTheNote(noteData) {
     })
    
 }
+
 export async function addNoteToTrash(noteData){
   let data =noteData.noteId
-  console.log('the jsldjlsj',data);
+  console.log('the riyaz did ',noteData.isDeleted);
   
   await db.collection("notes").doc(noteData.noteId).update({
-    // isDeleted: true,
-    "isDeleted":noteData.isDeleted,
-    // archieve: false,
-    // isPinned: false,
+    isDeleted:noteData.isDeleted,
   })
   .then(res=> {
     res=true;
@@ -211,3 +205,16 @@ export async function colorChange(noteData){
   return error.message
 });
 }
+
+
+// export async function deleteNote(data){
+//   await  serviceConstant.firestore.collection("notes").doc(data.id).delete()
+//   .then(res=> {
+//     res=true;
+//     return res
+// }).catch(function(error) {
+//   return error.message
+// });
+
+// }
+

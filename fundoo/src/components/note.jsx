@@ -26,11 +26,11 @@ class Notes extends Component {
     this.state = {
       cardOpen: false,
       anchorEl: null,
-      color:"",
+      color: "",
       title: "",
       description: "",
       isPinned: false,
-      // isDeleted:false,
+      isDeleted: false,
       archieve: false,
       snackbarOpen: false,
       snackbarMsg: ""
@@ -98,15 +98,15 @@ class Notes extends Component {
         this.setState({ cardOpen: false });
       } else {
         const noteData = {
-        title: this.state.title,
+          title: this.state.title,
           description: this.state.description,
           color: this.state.color,
           archieve: this.state.archieve,
-          isDeleted:this.state.isDeleted,
+          isDeleted: this.state.isDeleted,
           isPinned: true,
         };
-        console.log("--------------",noteData);
-        
+        console.log("--------------", noteData);
+
         saveNote(noteData).then(res => {
           if (res === true) {
             this.setState({
@@ -116,8 +116,8 @@ class Notes extends Component {
               description: "",
               cardOpen: false,
               color: "",
-              archieve:"",
-              isDeleted:""
+              archieve: "",
+              isDeleted: false 
 
             });
           } else {
@@ -135,7 +135,7 @@ class Notes extends Component {
   paletteProps = (e) => {
     console.log(e)
     this.setState({
-      color:e
+      color: e
     })
 
     this.props.colorChange(e)
@@ -149,19 +149,19 @@ class Notes extends Component {
   }
   createArchieveNote = async () => {
     try {
-        await this.setState({ isPinned: false, archieve: true })
-        this.newNote()
+      await this.setState({ isPinned: false, archieve: true })
+      this.newNote()
     }
     catch (error) {
-        console.log(error)
+      console.log(error)
     }
-}
+  }
   render() {
     return !this.state.cardOpen ? (
 
       <div className="new_card"
         onClick={this.handleOpen}>
-        <Card className="create" style={{boxShadow: "0px 0px 5px 1px"}}>
+        <Card className="create" style={{ boxShadow: "0px 0px 5px 1px" }}>
 
           <div className="create1">
             <div>
@@ -245,7 +245,7 @@ class Notes extends Component {
               </div>
               <div>
                 <Tooltip title="Archive">
-                  <ArchiveOutlinedIcon  onClick={this.createArchieveNote} />
+                  <ArchiveOutlinedIcon onClick={this.createArchieveNote} />
                 </Tooltip>
               </div>
               <div>

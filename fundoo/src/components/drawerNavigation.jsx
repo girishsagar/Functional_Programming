@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText
-} from "@material-ui/core";
+import {Divider, Drawer,List, ListItem, ListItemIcon,  ListItemText } from "@material-ui/core";
 import AddAlertIcon from "@material-ui/icons/AddAlert";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import { withRouter } from "react-router-dom";
@@ -14,8 +7,6 @@ import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import archive from "./archive";
-import editNote from "./editNote"
 const thm = createMuiTheme({
   overrides: {
     MuiDivider: {
@@ -39,9 +30,11 @@ class DrawerNav extends React.Component {
  handleNote=()=>{
    this.props.handleNote(); 
  }
+ handleTrash=()=>{
+  this.props.handleTrash(); 
+}
 
-
-  render() {
+ render() {
     return (
       <div className="draw_dash ">
         <Drawer
@@ -89,12 +82,12 @@ class DrawerNav extends React.Component {
                   </ListItem>
                 </div>
             
-                <div className="Trash">
+                <div className="Trash" onClick={this.handleTrash}>
                   <ListItem button key="Trash">
                     <ListItemIcon>
-                      <DeleteOutlineOutlinedIcon />
+                      <DeleteOutlineOutlinedIcon  />
                     </ListItemIcon>
-                    <ListItemText primary="Trash" />{" "}
+                    <ListItemText primary="Trash" />
                   </ListItem>
                 </div>
               </MuiThemeProvider>

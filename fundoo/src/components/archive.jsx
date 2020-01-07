@@ -42,7 +42,7 @@ class Archive extends Component {
       title: "",
       description: "",
       color: "",
-      isDeleted: "",
+      isDeleted: false,
       archieve: false,
       isPinned: false,
       pin_open: false,
@@ -148,10 +148,10 @@ class Archive extends Component {
       : "getNote-icons";
         return (
 
-          <div className="_notes" >
+          <div className="_notes"  >
 
             {!this.state.open ? (
-              <div className="_notes_" style={{marginTop:"95px",flexWrap:"wrap",justifyContent:"space-evenly"}}>
+              <div className="_notes_"  style={{marginTop:"95px",flexWrap:"wrap",}}>
                 {this.state.notes.map(key => {
                   // key.isArchived === false &&
                   //   key.isDeleted === false &&
@@ -338,16 +338,5 @@ class Archive extends Component {
         );
       }
             }
-    // });
-    // return (
-    //   <div className="_notes">
-    //     <div className="_notes_dash">
-    //       {/* {archiveNotes} */}
-    //       <MuiThemeProvider theme={thm}>
-    //         <DrawerNav open={this.state.open} />
-    //       </MuiThemeProvider>
-    //     </div>
-    //   </div>
-    // )
-    // }
+
 export default withRouter(Archive);

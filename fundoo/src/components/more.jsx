@@ -11,26 +11,18 @@ import {addNoteToTrash,getNote} from "../controller/userController"
 class More extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isDeleted:false,
-      noteId:"",
-      notes:[]
-    };
-  }
-  handleDelete= async (noteId)=>{
-    await this.setState({
-      isDeleted:this.state.isDeleted
-    })
-    console.log("the deleted a demo of de",this.state.isDeleted);
     
+  }
+  handleDelete=  ()=>{
     let data ={
-      noteId:noteId,
-      isDeleted:this.state.isDeleted
+      noteId:this.props.id,
+      isDeleted:true
     }
   console.log("delted using id " ,data);
   addNoteToTrash(data).then(res=>{
     console.log("result of deleted is ", res); 
-    this.handleGetNotes();
+    this.props.handleGetNotes();
+
   })
   .catch(err=>{
     console.log("Error occured during deletion ",err);
@@ -38,19 +30,6 @@ class More extends Component {
   })
 
   }
-  handleGetNotes = () => {
-    getNote()
-      .then(res => {
-        this.setState({
-          // / notes: res.noteData.noteData.noteData
-          notes: res
-        });
-        console.log("res in notesData", this.state.notes);
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
-  };
   render() {
     return (
       

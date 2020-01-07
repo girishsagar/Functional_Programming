@@ -10,10 +10,7 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import ArchiveIcon from "@material-ui/icons/Archive";
 import UnarchiveIcon from "@material-ui/icons/Unarchive";
 import ColorComponent from "./colorNote";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
-import { editNote, getNote, pinNotes, archiveTheNote, addNoteToTrash, colorChange } from "../controller/userController";
-import MenuIcon from "@material-ui/icons/Menu";
+import { editNote, getNote, pinNotes, archiveTheNote, colorChange } from "../controller/userController";
 import Dialog from "@material-ui/core/Dialog";
 import RoomOutlinedIcon from "@material-ui/icons/RoomOutlined";
 import pin from "../assets/pin.png";
@@ -95,9 +92,6 @@ class Getnote extends Component {
       this.handleGetNotes();
     })
   };
-  /**
-   * Todat archive 
-   */
   archiveNote = async (noteId) => {
     await this.setState({
       archieve: !this.state.archieve
@@ -116,47 +110,12 @@ class Getnote extends Component {
 
       })
   }
-// handleDelete= async (noteId)=>{
-//   await this.setState({
-//     isDeleted:!this.sate.isDeleted
-//   })
-//   let data ={
-//     noteId:noteId,
-//     isDeleted:this.state.isDeleted
-//   }
-// console.log("delted using id " ,data);
-// addNoteToTrash(data).then(res=>{
-//   console.log("result of deleted is ", res); 
-//   this.handleGetNotes();
-// })
-// .catch(err=>{
-//   console.log("Error occured during deletion ",err);
-  
-// })
-
-// }
-  // handleDelete = noteId => {
-  //   console.log("deleted", noteId);
-  //   let data = {
-  //     isDeleted: true,
-  //     noteIdList: [noteId]
-  //   }
-  //   console.log("Deleted noteId is ", noteId);
-  //   addNoteToTrash(data).then(res => {
-  //     console.log("the deleted not is ", res)
-  //     this.handleGetNotes();
-  //     this.setState({ anchorEl: null });
-  //   })
-  //     .catch(err => {
-  //       console.log("err in archiveNote component ", err);
-  //     });
-  // }
 
   handleGetNotes = () => {
     getNote()
       .then(res => {
         this.setState({
-          // / notes: res.noteData.noteData.noteData
+         
           notes: res
         });
         console.log("res in notesData", this.state.notes);
@@ -242,19 +201,9 @@ class Getnote extends Component {
         console.log("err in pinnote component ", err);
       });
   }
-  // removeNote = () => {
-  //     const data = {
-  //       id: this.props.data.id
-  //     }
-  //     addNoteToTrash(data).then(res => {
-  //       console.log(res)
-  //       this.setState({ anchorEl: null });
-  //       this.props.showAllNote()
-  //     })
-  //   }
 
   render() {
-
+    let view=this.props.iconChoose?"gridview":"listview"
     let archieveIcon = !this.archive ? (
       <IconButton onClick={this.archiveNote}>
         <Tooltip title="Archieve">
@@ -285,16 +234,16 @@ class Getnote extends Component {
             {this.state.notes.map(key => {
               // key.isArchived === false &&
               //   key.isDeleted === false &&
-              if (key.data().archieve === false) {
-                console.log("the dele is ", key.id.isDeleted);
+              if((key.data().archieve === false) &&(key.data().isDeleted === false)){
+                console.log("the dele is ", key.data().isDeleted);
                 console.log("data", key.data().isPinned);
                 console.log("The archive js ", key.data().archive);
 
                 return (
                   <div className="notes_">
-                    <Card
+                    <Card className={view}
                       style={{ backgroundColor: this.props.color }}
-                      className="get_Nottes_card"
+                      // className="get_Nottes_card"
                       style={{
                         width: "250px",
                         minHeight: "135px",
@@ -320,8 +269,10 @@ class Getnote extends Component {
                             {key.data().title}
                             {/* <RoomOutlinedIcon onClick={() => this.handlePin(key.id)} /> */}
                           </div>
-                          <div style={{ marginTop: "25px" }}>{key.data().description}</div>
-                          {/* <div>{key.data().color}</div> */}
+                          <div style={{ marginTop: "25px" }}>
+                            {key.data().description}
+                          </div>
+                     
                         </div>
                         <div>
                           <Avatar style={{ background: "#d2cece" }}>
@@ -374,9 +325,6 @@ class Getnote extends Component {
                           </Tooltip>
                         </div>
                         <div>
-                          {/* <Tooltip title="select Colors">
-                          <ColorLensOutlinedIcon />
-                        </Tooltip> */}
                           <ColorComponent paletteProps={this.paletteProps}
                             id={key.id} />
                         </div>
@@ -405,7 +353,11 @@ class Getnote extends Component {
 
                             />
                           </Tooltip>
-                          
+                          <More
+          anchorEl={this.state.anchorEl}
+          closeMenu={this.handleClose} id={key.id}
+          handleGetNotes={this.handleGetNotes}
+          />
                         </div>
 
                       </div>
@@ -426,7 +378,6 @@ class Getnote extends Component {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
               >
-
                 <Card className="dialogCard">
                   <div className="editcard">
                     <div>
@@ -455,7 +406,6 @@ class Getnote extends Component {
                         <PersonAddOutlinedIcon />
                       </div>
                       <div>
-
                         <ColorComponent onChange={this.paletteProps} />
                       </div>
                       <div>
@@ -481,9 +431,7 @@ class Getnote extends Component {
               </Dialog>
             </div>
           )}
-        <More
-          anchorEl={this.state.anchorEl}
-          closeMenu={this.handleClose} />
+       
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IconButton, AppBar, Toolbar } from "@material-ui/core";
+import { IconButton, AppBar, Toolbar,Tooltip } from "@material-ui/core";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import { withRouter } from "react-router-dom";
@@ -11,6 +11,9 @@ import ViewComfySharpIcon from "@material-ui/icons/ViewComfySharp";
 import DrawerNav from "./drawerNavigation";
 import Dropdown from "./dropDown";
 import Avatar from "@material-ui/core/Avatar";
+import SvgGrid from "../icons/grid";
+import SvgSetting from "../icons/setting"
+import SvgList from "../icons/grid"
 const thm = createMuiTheme({
   overrides: {
     MuiAppBar: {
@@ -69,8 +72,23 @@ class Navigation extends Component {
   handleClose = event => {
     this.setState({ anchorEl: null });
   };
-  
+  reload = () => {
+    window.location.reload();
+  };
+  showListView = () => {
+    this.props.listView();
+  };
   render() {
+    let viewIcon = !this.props.view ? (
+      <Tooltip title="List View">
+        <SvgList />
+      </Tooltip>
+    ) : (
+      <Tooltip title="Grid View">
+        <SvgGrid />
+      </Tooltip>
+    );
+ 
     return (
       <div className="nav">
         <MuiThemeProvider theme={thm}>
@@ -83,7 +101,7 @@ class Navigation extends Component {
                   </IconButton>
                 </div>
                 <div >
-                  <img src={require("../assets/keep.png")} className="keep_image"/>
+                  <img src={require("../assets/keep.png")} className="keep_image" />
                 </div>
                 <div>FUNDOO</div>
               </div>
@@ -99,13 +117,18 @@ class Navigation extends Component {
 
                 <div className="appicons">
                   <div>
-                    <RefreshIcon />
+                    <RefreshIcon onClick={this.reload} />
                   </div>
                   <div>
                     <ShoppingCartOutlinedIcon />
                   </div>
                   <div>
-                    <ViewComfySharpIcon />
+                  <IconButton onClick={this.showListView}>
+                      {viewIcon}
+                    </IconButton>
+                    <IconButton>
+                      <SvgSetting />
+                    </IconButton>
                   </div>
                 </div>
               </div>
@@ -118,7 +141,8 @@ class Navigation extends Component {
               </div>
             </Toolbar>
           </AppBar>
-          <DrawerNav open={this.state.open} handleArchive={this.props.handleArchive} handleNote={this.props.handleNote}/>
+          <DrawerNav open={this.state.open} handleArchive={this.props.handleArchive} 
+          handleNote={this.props.handleNote} handleTrash={this.props.handleTrash} />
           <Dropdown
             anchorEl={this.state.anchorEl}
             closeMenu={this.handleClose} />
